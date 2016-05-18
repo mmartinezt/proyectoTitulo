@@ -11,8 +11,8 @@ use Yii;
  * @property integer $numero_empleado
  * @property integer $id_tipo_empleado
  * @property string $nombres
- * @property string $apellido paterno
- * @property string $apellido materno
+ * @property string $apellido_paterno
+ * @property string $apellido_materno
  * @property string $direccion
  * @property string $correo_electronico
  */
@@ -32,11 +32,11 @@ class Empleado extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['rut_empleado', 'numero_empleado', 'id_tipo_empleado', 'nombres', 'apellido paterno', 'apellido materno', 'direccion', 'correo_electronico'], 'required'],
+            [['rut_empleado', 'numero_empleado', 'id_tipo_empleado', 'nombres', 'apellido_paterno', 'apellido_materno', 'direccion', 'correo_electronico'], 'required'],
             [['numero_empleado', 'id_tipo_empleado'], 'integer'],
             [['rut_empleado'], 'string', 'max' => 30],
             [['nombres'], 'string', 'max' => 200],
-            [['apellido paterno', 'apellido materno'], 'string', 'max' => 100],
+            [['apellido_paterno', 'apellido_materno'], 'string', 'max' => 100],
             [['direccion', 'correo_electronico'], 'string', 'max' => 400],
         ];
     }
@@ -51,8 +51,8 @@ class Empleado extends \yii\db\ActiveRecord
             'numero_empleado' => 'Numero Empleado',
             'id_tipo_empleado' => 'Id Tipo Empleado',
             'nombres' => 'Nombres',
-            'apellido paterno' => 'Apellido Paterno',
-            'apellido materno' => 'Apellido Materno',
+            'apellido_paterno' => 'Apellido Paterno',
+            'apellido_materno' => 'Apellido Materno',
             'direccion' => 'Direccion',
             'correo_electronico' => 'Correo Electronico',
         ];

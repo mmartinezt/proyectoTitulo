@@ -18,7 +18,7 @@ class SubcategoriaProductoSearch extends SubcategoriaProducto
     public function rules()
     {
         return [
-            [['id_categoria_prodcto'], 'integer'],
+            [['id_categoria_prodcto', 'id_categoria_producto'], 'integer'],
             [['nombre', 'descripcion'], 'safe'],
         ];
     }
@@ -60,6 +60,7 @@ class SubcategoriaProductoSearch extends SubcategoriaProducto
         // grid filtering conditions
         $query->andFilterWhere([
             'id_categoria_prodcto' => $this->id_categoria_prodcto,
+            'id_categoria_producto' => $this->id_categoria_producto,
         ]);
 
         $query->andFilterWhere(['like', 'nombre', $this->nombre])

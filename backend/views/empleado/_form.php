@@ -20,9 +20,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'nombres')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'apellido paterno')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'apellido_paterno')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'apellido materno')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'apellido_materno')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'direccion')->textInput(['maxlength' => true]) ?>
 

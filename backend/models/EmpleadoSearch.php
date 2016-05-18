@@ -18,7 +18,7 @@ class EmpleadoSearch extends Empleado
     public function rules()
     {
         return [
-            [['rut_empleado', 'nombres', 'apellido paterno', 'apellido materno', 'direccion', 'correo_electronico'], 'safe'],
+            [['rut_empleado', 'nombres', 'apellido_paterno', 'apellido_materno', 'direccion', 'correo_electronico'], 'safe'],
             [['numero_empleado', 'id_tipo_empleado'], 'integer'],
         ];
     }
@@ -65,8 +65,8 @@ class EmpleadoSearch extends Empleado
 
         $query->andFilterWhere(['like', 'rut_empleado', $this->rut_empleado])
             ->andFilterWhere(['like', 'nombres', $this->nombres])
-            ->andFilterWhere(['like', 'apellido paterno', $this->apellido paterno])
-            ->andFilterWhere(['like', 'apellido materno', $this->apellido materno])
+            ->andFilterWhere(['like', 'apellido_paterno', $this->apellido_paterno])
+            ->andFilterWhere(['like', 'apellido_materno', $this->apellido_materno])
             ->andFilterWhere(['like', 'direccion', $this->direccion])
             ->andFilterWhere(['like', 'correo_electronico', $this->correo_electronico]);
 

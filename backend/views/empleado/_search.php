@@ -23,9 +23,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'nombres') ?>
 
-    <?= $form->field($model, 'apellido paterno') ?>
+    <?= $form->field($model, 'apellido_paterno') ?>
 
-    <?php // echo $form->field($model, 'apellido materno') ?>
+    <?php // echo $form->field($model, 'apellido_materno') ?>
 
     <?php // echo $form->field($model, 'direccion') ?>
 

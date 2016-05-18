@@ -28,8 +28,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'numero_empleado',
             'id_tipo_empleado',
             'nombres',
-            'apellido paterno',
-            // 'apellido materno',
+            'apellido_paterno',
+            // 'apellido_materno',
             // 'direccion',
             // 'correo_electronico',
 
