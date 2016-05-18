@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model backend\models\CategoriaProducto */
 
 $this->title = $model->id_tipo_producto;
-$this->params['breadcrumbs'][] = ['label' => 'Categoria Productos', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Categoría de Productos', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="categoria-producto-view">
@@ -15,11 +15,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id_tipo_producto], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id_tipo_producto], [
+        <?= Html::a('Actualizar', ['update', 'id' => $model->id_tipo_producto], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Eliminar', ['delete', 'id' => $model->id_tipo_producto], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => '¿Estás seguro que quieres eliminar este registro?',
                 'method' => 'post',
             ],
         ]) ?>

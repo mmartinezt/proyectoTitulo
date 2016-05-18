@@ -40,7 +40,7 @@ class CategoriaProducto extends \yii\db\ActiveRecord
         return [
             'id_tipo_producto' => 'Id Tipo Producto',
             'nombre' => 'Nombre',
-            'descripcion' => 'Descripcion',
+            'descripcion' => 'Descripción',
         ];
     }
 }

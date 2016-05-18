@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel backend\models\SubcategoriaProductoSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Subcategoria Productos';
+$this->title = 'Sub-categoría de Productos';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="subcategoria-producto-index">
@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Subcategoria Producto', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Crear Sub-categoría de Productos', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -24,7 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id_categoria_prodcto',
+            'id_subcategoria_producto',
             'id_categoria_producto',
             'nombre',
             'descripcion',

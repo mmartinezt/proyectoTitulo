@@ -6,8 +6,8 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model backend\models\SubcategoriaProducto */
 
-$this->title = $model->id_categoria_prodcto;
-$this->params['breadcrumbs'][] = ['label' => 'Subcategoria Productos', 'url' => ['index']];
+$this->title = $model->id_subcategoria_producto;
+$this->params['breadcrumbs'][] = ['label' => 'Sub-categoría de Productos', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="subcategoria-producto-view">
@@ -15,11 +15,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id_categoria_prodcto], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id_categoria_prodcto], [
+        <?= Html::a('Actualizar', ['update', 'id' => $model->id_subcategoria_producto], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Eliminar', ['delete', 'id' => $model->id_subcategoria_producto], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => '¿Estás seguro que quieres eliminar este registro?',
                 'method' => 'post',
             ],
         ]) ?>
@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id_categoria_prodcto',
+            'id_subcategoria_producto',
             'id_categoria_producto',
             'nombre',
             'descripcion',

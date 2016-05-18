@@ -66,7 +66,7 @@ class SubcategoriaProductoController extends Controller
         $model = new SubcategoriaProducto();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id_categoria_prodcto]);
+            return $this->redirect(['view', 'id' => $model->id_subcategoria_producto]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -85,7 +85,7 @@ class SubcategoriaProductoController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id_categoria_prodcto]);
+            return $this->redirect(['view', 'id' => $model->id_subcategoria_producto]);
         } else {
             return $this->render('update', [
                 'model' => $model,

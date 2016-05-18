@@ -7,8 +7,7 @@ use Yii;
 /**
  * This is the model class for table "subcategoria_producto".
  *
- * @property integer $id_categoria_prodcto
- * @property integer $id_categoria_producto
+ * @property integer $id_subcategoria_producto
  * @property string $nombre
  * @property string $descripcion
  */
@@ -40,10 +39,10 @@ class SubcategoriaProducto extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id_categoria_prodcto' => 'Id Categoria Prodcto',
-            'id_categoria_producto' => 'Id Categoria Producto',
+            'id_subcategoria_producto' => 'Id Categoría Prodcto',
+            'id_categoria_producto' => 'Id Categoría Producto',
             'nombre' => 'Nombre',
-            'descripcion' => 'Descripcion',
+            'descripcion' => 'Descripción',
         ];
     }
 }
