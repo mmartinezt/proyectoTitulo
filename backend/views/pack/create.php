@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Pack */
 
-$this->title = 'Create Pack';
+$this->title = 'Crear Pack';
 $this->params['breadcrumbs'][] = ['label' => 'Packs', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

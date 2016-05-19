@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Oferta */
 
-$this->title = 'Create Oferta';
+$this->title = 'Crear Oferta';
 $this->params['breadcrumbs'][] = ['label' => 'Ofertas', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
