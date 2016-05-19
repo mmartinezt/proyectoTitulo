@@ -11,7 +11,7 @@ use Yii;
  * @property integer $id_categoria_producto
  * @property integer $id_subcategoria_producto
  * @property string $nombre_producto
- * @property string $marca_producto
+ * @property string $id_marca_producto
  * @property integer $stock
  * @property string $path_imagen
  * @property integer $precio_compra
@@ -33,10 +33,10 @@ class Producto extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_categoria_producto', 'id_subcategoria_producto', 'nombre_producto', 'marca_producto', 'stock', 'path_imagen', 'precio_compra', 'precio_venta'], 'required'],
+            [['id_categoria_producto', 'id_subcategoria_producto', 'nombre_producto', 'id_marca_producto', 'stock', 'path_imagen', 'precio_compra', 'precio_venta'], 'required'],
             [['id_categoria_producto', 'id_subcategoria_producto', 'stock', 'precio_compra', 'precio_venta'], 'integer'],
             [['nombre_producto'], 'string', 'max' => 500],
-            [['marca_producto'], 'string', 'max' => 100],
+            [['id_marca_producto'], 'string', 'max' => 100],
             [['path_imagen'], 'string', 'max' => 200],
         ];
     }
@@ -51,7 +51,7 @@ class Producto extends \yii\db\ActiveRecord
             'id_categoria_producto' => 'Categoría',
             'id_subcategoria_producto' => 'Sub-categoría',
             'nombre_producto' => 'Nombre',
-            'marca_producto' => 'Marca',
+            'id_marca_producto' => 'Marca',
             'stock' => 'Stock',
             'path_imagen' => 'Imagen',
             'precio_compra' => 'Precio Compra',

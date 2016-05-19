@@ -5,11 +5,12 @@ use yii\widgets\ActiveForm;
 use yii\Helpers\ArrayHelper;
 use backend\models\CategoriaProducto;
 use backend\models\SubCategoriaProducto;
+use backend\models\MarcaProducto;
 use himiklab\colorbox\Colorbox;
 use yii\helpers\Url;
 
-
 $categorias=ArrayHelper::map(CategoriaProducto::find()->all(),'id_categoria_producto','nombre');
+$marcas=ArrayHelper::map(MarcaProducto::find()->all(),'id_marca_producto','nombre');
 ?>
 
 <?= Colorbox::widget([
@@ -27,8 +28,12 @@ $categorias=ArrayHelper::map(CategoriaProducto::find()->all(),'id_categoria_prod
     <?php $form = ActiveForm::begin(); ?>
 
 	<?= $form->field($model, 'nombre_producto')->textInput(['maxlength' => true]) ?>
+	<i class="fa">
+		<?= $form->field($model, 'id_marca_producto')->dropDownList($marcas, ['prompt'=>'Seleccione Marca...']) ?>
+	</i>
+	<a class="colorbox" href="<?php echo(Url::toRoute('marca-producto/create2')); ?>"> <input class="btn btn-info" type="button" value="Agregar nueva Marca"></input></a>	
 	
-	<?= $form->field($model, 'marca_producto')->textInput(['maxlength' => true]) ?>
+	<br>
 	
     <i class="fa">
 		<?= $form->field($model, 'id_categoria_producto')->dropDownList($categorias,
@@ -60,7 +65,7 @@ $categorias=ArrayHelper::map(CategoriaProducto::find()->all(),'id_categoria_prod
     <?= $form->field($model, 'precio_venta')->textInput() ?>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Crear' : 'Actualizar', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? 'Crear' : 'Actualizar', ['class' => $model->isNewRecord ? 'btn btn-primary' : 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
