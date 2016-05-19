@@ -8,6 +8,7 @@ use backend\models\SubcategoriaProductoSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\Url;
 
 /**
  * SubcategoriaProductoController implements the CRUD actions for SubcategoriaProducto model.
@@ -74,6 +75,19 @@ class SubcategoriaProductoController extends Controller
             ]);
         }
     }
+	
+    public function actionCreate2()
+    {
+        $model = new SubcategoriaProducto();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(Url::toRoute('producto/create'));
+        } else {
+            return $this->render('create2', [
+                'model' => $model,
+            ]);
+        }
+    }	
 
     /**
      * Updates an existing SubcategoriaProducto model.
