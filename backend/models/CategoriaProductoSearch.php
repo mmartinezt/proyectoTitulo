@@ -18,7 +18,7 @@ class CategoriaProductoSearch extends CategoriaProducto
     public function rules()
     {
         return [
-            [['id_tipo_producto'], 'integer'],
+            [['id_categoria_producto'], 'integer'],
             [['nombre', 'descripcion'], 'safe'],
         ];
     }
@@ -59,7 +59,7 @@ class CategoriaProductoSearch extends CategoriaProducto
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'id_tipo_producto' => $this->id_tipo_producto,
+            'id_categoria_producto' => $this->id_categoria_producto,
         ]);
 
         $query->andFilterWhere(['like', 'nombre', $this->nombre])

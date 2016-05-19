@@ -6,6 +6,9 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model backend\models\SubcategoriaProducto */
 /* @var $form yii\widgets\ActiveForm */
+
+
+
 ?>
 
 <div class="subcategoria-producto-form">

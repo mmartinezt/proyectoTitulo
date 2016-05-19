@@ -38,7 +38,7 @@ class CategoriaProducto extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id_tipo_producto' => 'Id Tipo Producto',
+            'id_categoria_producto' => 'Id Categoría Producto',
             'nombre' => 'Nombre',
             'descripcion' => 'Descripción',
         ];
