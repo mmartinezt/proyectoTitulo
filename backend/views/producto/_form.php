@@ -8,6 +8,7 @@ use backend\models\SubCategoriaProducto;
 use backend\models\MarcaProducto;
 use himiklab\colorbox\Colorbox;
 use yii\helpers\Url;
+use kartik\file\FileInput;
 
 $categorias=ArrayHelper::map(CategoriaProducto::find()->all(),'id_categoria_producto','nombre');
 $marcas=ArrayHelper::map(MarcaProducto::find()->all(),'id_marca_producto','nombre');
@@ -56,7 +57,12 @@ $marcas=ArrayHelper::map(MarcaProducto::find()->all(),'id_marca_producto','nombr
 	</i>
 	<a class="colorbox" href="<?php echo(Url::toRoute('subcategoria-producto/create2')); ?>"> <input class="btn btn-success" type="button" value="Agregar nueva sub-Categoría"></input></a>
 
-    <?= $form->field($model, 'path_imagen')->textInput(['maxlength' => true]) ?>
+
+
+	<?= $form->field($model, 'path_imagen')->widget(FileInput::classname(), [
+    'options' => ['type'=>'file' ,'accept' => 'image/*'],
+	]);
+	?>
 
     <?= $form->field($model, 'stock')->textInput() ?>
 
