@@ -3,11 +3,14 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
+use yii\helpers\ArrayHelper;
+use backend\models\CategoriaProducto;
+
 /* @var $this yii\web\View */
 /* @var $model backend\models\SubcategoriaProducto */
 /* @var $form yii\widgets\ActiveForm */
 
-
+$categorias=ArrayHelper::map(CategoriaProducto::find()->all(),'id_categoria_producto','nombre');
 
 ?>
 
@@ -15,7 +18,7 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'id_categoria_producto')->textInput() ?>
+    <?= $form->field($model, 'id_categoria_producto')->dropDownList($categorias, ['prompt'=>'Seleccione una Categoría...']) ?>
 
     <?= $form->field($model, 'nombre')->textInput(['maxlength' => true]) ?>
 

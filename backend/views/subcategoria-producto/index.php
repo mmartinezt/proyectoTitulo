@@ -9,6 +9,9 @@ use yii\grid\GridView;
 
 $this->title = 'Sub-categoría de Productos';
 $this->params['breadcrumbs'][] = $this->title;
+
+
+
 ?>
 <div class="subcategoria-producto-index">
 
@@ -25,8 +28,11 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id_subcategoria_producto',
-            'id_categoria_producto',
-            'nombre',
+			
+            
+            ['attribute'=>'id_categoria_producto'],
+			
+			'nombre',
             'descripcion',
 
             ['class' => 'yii\grid\ActionColumn'],

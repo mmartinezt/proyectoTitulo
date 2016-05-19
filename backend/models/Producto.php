@@ -49,7 +49,7 @@ class Producto extends \yii\db\ActiveRecord
         return [
             'id_prodcto' => 'Id',
             'id_categoria_producto' => 'Categoría',
-            'id_subcategoria_producto' => 'Subcategoría',
+            'id_subcategoria_producto' => 'Sub-categoría',
             'nombre_producto' => 'Nombre',
             'marca_producto' => 'Marca',
             'stock' => 'Stock',

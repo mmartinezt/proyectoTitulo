@@ -37,6 +37,7 @@ class SubcategoriaProductoController extends Controller
     {
         $searchModel = new SubcategoriaProductoSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+		
 
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -121,4 +122,31 @@ class SubcategoriaProductoController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+	
+
+	public function actionLists($id)
+    {		
+
+        $countCategorias = SubcategoriaProducto::find()
+                ->where(['id_categoria_producto' => $id])
+                ->count();
+ 
+        $categorias = SubcategoriaProducto::find()
+                ->where(['id_categoria_producto' => $id])
+                ->all();
+ 
+        if($countCategorias > 0 )
+        {
+            foreach($categorias as $categoria ){
+                echo "<option value='".$categoria->id_subcategoria_producto."'>".$categoria->nombre."</option>";
+            }
+        }
+        else{
+            echo "<option> - </option>";
+        }
+ 
+    }
+	
+	
+	
 }
