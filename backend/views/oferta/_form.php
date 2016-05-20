@@ -19,7 +19,7 @@ $productos=ArrayHelper::map(Producto::find()->all(),'id_prodcto','nombre_product
 
     <?= $form->field($model, 'valor_oferta')->textInput() ?>
 
-    <?= $form->field($model, 'descuento_porcentage')->textInput() ?>
+    <?= $form->field($model, 'descuento_porcentaje')->textInput() ?>
 
     <?= $form->field($model, 'descripcion')->textInput(['maxlength' => true]) ?>
 

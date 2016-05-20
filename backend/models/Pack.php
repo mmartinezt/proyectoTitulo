@@ -4,6 +4,8 @@ namespace backend\models;
 
 use Yii;
 
+
+
 /**
  * This is the model class for table "pack".
  *
@@ -16,6 +18,7 @@ use Yii;
  */
 class Pack extends \yii\db\ActiveRecord
 {
+	public $Productos;
     /**
      * @inheritdoc
      */
@@ -50,6 +53,8 @@ class Pack extends \yii\db\ActiveRecord
             'path_imagen' => 'Path Imagen',
             'precio' => 'Precio',
             'estado' => 'Estado',
+			'Productos' => 'Productos',
+			
         ];
     }
 }

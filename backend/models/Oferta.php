@@ -29,8 +29,8 @@ class Oferta extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_producto', 'valor_oferta', 'descuento_porcentage', 'descripcion'], 'required'],
-            [['id_producto', 'valor_oferta', 'descuento_porcentage'], 'integer'],
+            [['id_producto', 'valor_oferta', 'descuento_porcentaje', 'descripcion'], 'required'],
+            [['id_producto', 'valor_oferta', 'descuento_porcentaje'], 'integer'],
             [['descripcion'], 'string', 'max' => 500],
         ];
     }
@@ -44,8 +44,8 @@ class Oferta extends \yii\db\ActiveRecord
             'id_oferta' => 'Id Oferta',
             'id_producto' => 'Id Producto',
             'valor_oferta' => 'Valor Oferta',
-            'descuento_porcentage' => 'Descuento Porcentage',
-            'descripcion' => 'Descripcion',
+            'descuento_porcentaje' => 'Descuento Porcentaje',
+            'descripcion' => 'Descripción',
         ];
     }
 }

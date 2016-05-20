@@ -31,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'id_oferta',
             'id_producto',
             'valor_oferta',
-            'descuento_porcentage',
+            'descuento_porcentaje',
             'descripcion',
         ],
     ]) ?>

@@ -18,7 +18,7 @@ class OfertaSearch extends Oferta
     public function rules()
     {
         return [
-            [['id_oferta', 'id_producto', 'valor_oferta', 'descuento_porcentage'], 'integer'],
+            [['id_oferta', 'id_producto', 'valor_oferta', 'descuento_porcentaje'], 'integer'],
             [['descripcion'], 'safe'],
         ];
     }
@@ -62,7 +62,7 @@ class OfertaSearch extends Oferta
             'id_oferta' => $this->id_oferta,
             'id_producto' => $this->id_producto,
             'valor_oferta' => $this->valor_oferta,
-            'descuento_porcentage' => $this->descuento_porcentage,
+            'descuento_porcentaje' => $this->descuento_porcentaje,
         ]);
 
         $query->andFilterWhere(['like', 'descripcion', $this->descripcion]);

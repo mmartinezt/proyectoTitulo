@@ -4,6 +4,7 @@ namespace backend\controllers;
 
 use Yii;
 use backend\models\Pack;
+use backend\models\PackProducto;
 use backend\models\PackSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -61,11 +62,20 @@ class PackController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
+	 
+	
     public function actionCreate()
     {
         $model = new Pack();
-
+		$model2 = new PackProducto();
+		
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+			$pros=$_POST['Pack']['Productos'];
+			foreach( $pros as $n => $id){
+					$model2->id_pack = $model->id_pack;
+					$model2->id_producto=$id;
+					$model2->save();			
+			}
             return $this->redirect(['view', 'id' => $model->id_pack]);
         } else {
             return $this->render('create', [

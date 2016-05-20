@@ -21,7 +21,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'valor_oferta') ?>
 
-    <?= $form->field($model, 'descuento_porcentage') ?>
+    <?= $form->field($model, 'descuento_porcentaje') ?>
 
     <?= $form->field($model, 'descripcion') ?>
 

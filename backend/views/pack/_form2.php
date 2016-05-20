@@ -2,10 +2,10 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\Helpers\ArrayHelper;
 use backend\models\Producto;
 use kartik\select2\Select2;
 use kartik\file\FileInput;
-use yii\Helpers\ArrayHelper;
 
 $productos=ArrayHelper::map(Producto::find()->all(),'id_prodcto','nombre_producto');
 
@@ -28,35 +28,16 @@ $productos=ArrayHelper::map(Producto::find()->all(),'id_prodcto','nombre_product
 	?>
 
     <?= $form->field($model, 'precio')->textInput() ?>
-
-    <?php
-		echo $form->field($model, 'estado')->widget(Select2::classname(), [
-			'data' => [1=>'Activo', 0=>'Inactivo'],
-			'language' => 'es',
-			'hideSearch' => true,
-			'options' => ['placeholder' => 'Seleccione un estado'],
-			'pluginOptions' => [
-				'allowClear' => true
-			],
-		]);
-
-	?>
-	<?php
-		echo $form->field($model, 'Productos')->widget(Select2::classname(), [
-			'data' => $productos,
-			'language' => 'es',
-			'hideSearch' => true,
-			'options' => ['placeholder' => 'Seleccione productos...', 'multiple' => true],
-			'pluginOptions' => [
-				'tags' => true,
-				'allowClear' => true
-			],
-		]);
-
-	?>
 	
- <br>
+	<?=
+		 $form->field($model, 'estado')->widget(Select2::classname(), [
+			'data' => [ '1' => 'Activo', '0' => 'Inactivo'],
+		]);
+	?>
+<br>
+	
 
+<br>
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Crear' : 'Actualizar', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
