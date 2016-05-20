@@ -24,6 +24,8 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'nombre_producto') ?>
 
     <?= $form->field($model, 'id_marca_producto') ?>
+	
+	<?php // $form->field($model, 'descripcion') ?>
 
     <?php // echo $form->field($model, 'stock') ?>
 

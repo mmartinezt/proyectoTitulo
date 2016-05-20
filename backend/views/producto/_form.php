@@ -58,7 +58,8 @@ $marcas=ArrayHelper::map(MarcaProducto::find()->all(),'id_marca_producto','nombr
 	<a class="colorbox" href="<?php echo(Url::toRoute('subcategoria-producto/create2')); ?>"> <input class="btn btn-success" type="button" value="Agregar nueva sub-Categoría"></input></a>
 
 
-
+	<?= $form->field($model, 'descripcion')->textInput(['maxlength' => true]) ?>
+	
 	<?= $form->field($model, 'path_imagen')->widget(FileInput::classname(), [
     'options' => ['type'=>'file' ,'accept' => 'image/*'],
 	]);

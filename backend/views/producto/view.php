@@ -33,6 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'id_subcategoria_producto',
             'nombre_producto',
             'id_marca_producto',
+			'descripcion',
             'stock',
             'path_imagen',
             'precio_compra',
