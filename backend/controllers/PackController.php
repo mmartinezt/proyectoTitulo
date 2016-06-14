@@ -52,8 +52,10 @@ class PackController extends Controller
      */
     public function actionView($id)
     {
+		$model = $this->findModel($id);
+			
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
         ]);
     }
 
@@ -67,17 +69,27 @@ class PackController extends Controller
     public function actionCreate()
     {
         $model = new Pack();
-		$model2 = new PackProducto();
 		
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-			$pros=$_POST['Pack']['Productos'];
-			foreach( $pros as $n => $id){
-					$model2->id_pack = $model->id_pack;
-					$model2->id_producto=$id;
-					$model2->save();			
+		
+        if ($model->load(Yii::$app->request->post())) {
+			
+			if($model->save()){
+					$pros=$model->Productos;
+					
+					//guarda productos al pack
+					foreach( $pros as $n => $id){
+							$model2 = new PackProducto();
+							$model2->id_pack = $model->id_pack;
+							$model2->id_producto=$id;
+							$model2->save();			
+					}
+					return $this->redirect(['view', 'id' => $model->id_pack]);
 			}
-            return $this->redirect(['view', 'id' => $model->id_pack]);
+			//else echo("error al guardar pack");
+			
         } else {
+			
+			
             return $this->render('create', [
                 'model' => $model,
             ]);
@@ -92,8 +104,18 @@ class PackController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
+		$model = $this->findModel($id);
+		
+		$p=[];
+		$cont=0;
+		foreach($model->productos as $producto){
+			$p[$cont] = $producto->producto->id_prodcto;
+			$cont +=1;
+		}
+		
+		$model->Productos=$p;
 
+      
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id_pack]);
         } else {

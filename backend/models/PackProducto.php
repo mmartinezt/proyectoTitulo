@@ -16,6 +16,11 @@ class PackProducto extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+	 
+	public function getProducto() {
+		return $this->hasOne(Producto::className(), ['id_prodcto' => 'id_producto']);
+	}
+	 
     public static function tableName()
     {
         return 'pack_producto';

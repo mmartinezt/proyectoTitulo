@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model backend\models\MarcaProducto */
 
-$this->title = $model->id_marca_producto;
+$this->title = $model->nombre;
 $this->params['breadcrumbs'][] = ['label' => 'Marca de Productos', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

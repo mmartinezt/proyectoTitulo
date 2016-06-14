@@ -40,9 +40,9 @@ class MarcaProducto extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id_marca_producto' => 'Id Marca Producto',
+            'id_marca_producto' => 'Identificador',
             'nombre' => 'Nombre',
-            'descripcion' => 'Descripcion',
+            'descripcion' => 'Descripción',
             'procedencia' => 'Procedencia',
         ];
     }

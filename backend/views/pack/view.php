@@ -35,6 +35,16 @@ $this->params['breadcrumbs'][] = $this->title;
             'precio',
             'estado',
         ],
-    ]) ?>
+    ])?>
+	
+	Productos:
+	<br>
+	<?php
+	foreach($model->productos as $producto){
+		echo($producto->producto->nombre_producto);
+		echo('<br>');
+	}	
+	
+	?>
 
 </div>

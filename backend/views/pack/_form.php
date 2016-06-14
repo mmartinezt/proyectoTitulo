@@ -7,7 +7,7 @@ use kartik\select2\Select2;
 use kartik\file\FileInput;
 use yii\Helpers\ArrayHelper;
 
-$productos=ArrayHelper::map(Producto::find()->all(),'id_prodcto','nombre_producto');
+$prds=ArrayHelper::map(Producto::find()->all(),'id_prodcto','nombre_producto');
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\Pack */
@@ -43,7 +43,7 @@ $productos=ArrayHelper::map(Producto::find()->all(),'id_prodcto','nombre_product
 	?>
 	<?php
 		echo $form->field($model, 'Productos')->widget(Select2::classname(), [
-			'data' => $productos,
+			'data' => $prds,
 			'language' => 'es',
 			'hideSearch' => true,
 			'options' => ['placeholder' => 'Seleccione productos...', 'multiple' => true],

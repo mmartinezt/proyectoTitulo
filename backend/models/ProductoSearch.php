@@ -15,11 +15,15 @@ class ProductoSearch extends Producto
     /**
      * @inheritdoc
      */
+	public $subcategoria;
+	public $categoria;
+	public $marca;
+	
     public function rules()
     {
         return [
             [['id_prodcto', 'id_categoria_producto', 'id_subcategoria_producto', 'stock', 'precio_compra', 'precio_venta'], 'integer'],
-            [['nombre_producto', 'id_marca_producto','descripcion' ,'path_imagen'], 'safe'],
+            [['nombre_producto', 'id_marca_producto','descripcion' ,'path_imagen','subcategoria','categoria','marca'], 'safe'],
         ];
     }
 
@@ -42,13 +46,14 @@ class ProductoSearch extends Producto
     public function search($params)
     {
         $query = Producto::find();
-
-        // add conditions that should always apply here
+		
+		$query->joinWith(['subcategoria','categoria','marca']);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
 
+	
         $this->load($params);
 
         if (!$this->validate()) {
@@ -56,12 +61,26 @@ class ProductoSearch extends Producto
             // $query->where('0=1');
             return $dataProvider;
         }
+		
+		$dataProvider->sort->attributes['subcategoria'] = [
+			'asc' => ['subcategoria_producto.nombre' => SORT_ASC],
+			'desc' => ['subcategoria_producto.nombre' => SORT_DESC],
+		];
+		
+		$dataProvider->sort->attributes['categoria'] = [
+			'asc' => ['categoria_producto.nombre' => SORT_ASC],
+			'desc' => ['categoria_producto.nombre' => SORT_DESC],
+		];
+		
+		$dataProvider->sort->attributes['marca'] = [
+			'asc' => ['marca.nombre' => SORT_ASC],
+			'desc' => ['marca.nombre' => SORT_DESC],
+		];
 
         // grid filtering conditions
         $query->andFilterWhere([
             'id_prodcto' => $this->id_prodcto,
             'id_categoria_producto' => $this->id_categoria_producto,
-            'id_subcategoria_producto' => $this->id_subcategoria_producto,
             'stock' => $this->stock,
             'precio_compra' => $this->precio_compra,
             'precio_venta' => $this->precio_venta,
@@ -70,7 +89,10 @@ class ProductoSearch extends Producto
         $query->andFilterWhere(['like', 'nombre_producto', $this->nombre_producto])
             ->andFilterWhere(['like', 'id_marca_producto', $this->id_marca_producto])
 			->andFilterWhere(['like', 'descripcion', $this->descripcion])
-            ->andFilterWhere(['like', 'path_imagen', $this->path_imagen]);
+            ->andFilterWhere(['like', 'path_imagen', $this->path_imagen])
+			 ->andFilterWhere(['like', 'subcategoria_producto.nombre', $this->subcategoria])
+			  ->andFilterWhere(['like', 'categoria_producto.nombre', $this->categoria])
+			   ->andFilterWhere(['like', 'marca.nombre', $this->marca]);
 
         return $dataProvider;
     }

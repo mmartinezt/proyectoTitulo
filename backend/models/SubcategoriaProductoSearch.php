@@ -15,11 +15,12 @@ class SubcategoriaProductoSearch extends SubcategoriaProducto
     /**
      * @inheritdoc
      */
+	 public $categoria;
     public function rules()
     {
         return [
             [['id_subcategoria_producto', 'id_categoria_producto'], 'integer'],
-            [['nombre', 'descripcion'], 'safe'],
+            [['nombre', 'descripcion', 'categoria'], 'safe'],
         ];
     }
 
@@ -48,7 +49,9 @@ class SubcategoriaProductoSearch extends SubcategoriaProducto
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
-
+		
+		$query->joinWith(['categoria']);
+		
         $this->load($params);
 
         if (!$this->validate()) {
@@ -56,6 +59,11 @@ class SubcategoriaProductoSearch extends SubcategoriaProducto
             // $query->where('0=1');
             return $dataProvider;
         }
+		
+		$dataProvider->sort->attributes['categoria'] = [
+			'asc' => ['categoria_producto.nombre' => SORT_ASC],
+			'desc' => ['categoria_producto.nombre' => SORT_DESC],
+		];
 
         // grid filtering conditions
         $query->andFilterWhere([
@@ -64,7 +72,8 @@ class SubcategoriaProductoSearch extends SubcategoriaProducto
         ]);
 
         $query->andFilterWhere(['like', 'nombre', $this->nombre])
-            ->andFilterWhere(['like', 'descripcion', $this->descripcion]);
+            ->andFilterWhere(['like', 'descripcion', $this->descripcion])
+			->andFilterWhere(['like', 'categoria_producto.nombre', $this->categoria]);
 
         return $dataProvider;
     }

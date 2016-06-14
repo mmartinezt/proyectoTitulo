@@ -30,11 +30,17 @@ class Pack extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+	 
+	public function getProductos() {
+		return $this->hasMany(PackProducto::className(), ['id_pack' => 'id_pack']);
+	}	
+	
     public function rules()
     {
         return [
             [['nombre', 'descripcion', 'path_imagen', 'precio', 'estado'], 'required'],
             [['precio', 'estado'], 'integer'],
+			[['Productos'], 'safe'],
             [['nombre'], 'string', 'max' => 100],
             [['descripcion'], 'string', 'max' => 500],
             [['path_imagen'], 'string', 'max' => 200],
@@ -47,9 +53,9 @@ class Pack extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id_pack' => 'Id Pack',
+            'id_pack' => 'Identificador',
             'nombre' => 'Nombre',
-            'descripcion' => 'Descripcion',
+            'descripcion' => 'Descripción',
             'path_imagen' => 'Path Imagen',
             'precio' => 'Precio',
             'estado' => 'Estado',

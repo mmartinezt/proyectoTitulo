@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model backend\models\SubcategoriaProducto */
 
-$this->title = $model->id_subcategoria_producto;
+$this->title = $model->nombre;
 $this->params['breadcrumbs'][] = ['label' => 'Sub-categoría de Productos', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -29,7 +29,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id_subcategoria_producto',
-            'id_categoria_producto',
+			[
+				 'attribute' => 'categoria.nombre',
+				 'label'=>'Categoría',
+			],
             'nombre',
             'descripcion',
         ],

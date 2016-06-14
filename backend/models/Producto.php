@@ -31,7 +31,22 @@ class Producto extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
-    public function rules()
+	 
+	
+	public function getSubcategoria() {
+		return $this->hasOne(SubcategoriaProducto::className(), ['id_subcategoria_producto' => 'id_subcategoria_producto']);
+	}	
+	
+	public function getCategoria() {
+		return $this->hasOne(CategoriaProducto::className(), ['id_categoria_producto' => 'id_categoria_producto']);
+	}
+	
+	public function getMarca() {
+		return $this->hasOne(MarcaProducto::className(), ['id_marca_producto' => 'id_marca_producto']);
+	}	
+	
+    
+	public function rules()
     {
         return [
             [['id_categoria_producto', 'id_subcategoria_producto', 'nombre_producto', 'id_marca_producto','descripcion' , 'stock', 'path_imagen', 'precio_compra', 'precio_venta'], 'required'],
@@ -48,7 +63,7 @@ class Producto extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id_prodcto' => 'Id',
+            'id_prodcto' => 'Identificador',
             'id_categoria_producto' => 'Categoría',
             'id_subcategoria_producto' => 'Sub-categoría',
             'nombre_producto' => 'Nombre',

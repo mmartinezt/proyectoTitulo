@@ -15,10 +15,12 @@ class PackProductoSearch extends PackProducto
     /**
      * @inheritdoc
      */
+	public $producto;
     public function rules()
     {
         return [
             [['id_pack_producto', 'id_pack', 'id_producto'], 'integer'],
+			[['producto'], 'safe'],
         ];
     }
 
@@ -47,7 +49,9 @@ class PackProductoSearch extends PackProducto
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
-
+		
+		$query->joinWith(['producto']);
+		
         $this->load($params);
 
         if (!$this->validate()) {
