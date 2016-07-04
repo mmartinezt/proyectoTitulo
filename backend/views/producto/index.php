@@ -27,6 +27,13 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id_prodcto',
 			[
+				 'attribute' => 'img',
+				 'label'=>'Imagen',
+				 'format'=>'html',
+				 'value' => function($data){ return Html::img(Yii::$app->request->baseUrl.'/upload/productos/'.$data->path_imagen,['width'=>'80']);  }
+			],
+			
+			[
 				 'attribute' => 'categoria',
 				 'label'=>'Categoría',
 				 'value' => 'categoria.nombre'

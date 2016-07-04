@@ -21,12 +21,12 @@ $marcas=ArrayHelper::map(MarcaProducto::find()->all(),'id_marca_producto','nombr
             'maxHeight' => '90%',
         ],
     ],
-    'coreStyle' => 2
+    'coreStyle' => 1
 ]) ?>
 
 <div class="producto-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['options'=>['enctype'=>'multipart/form-data'],]); ?>
 
 	<?= $form->field($model, 'nombre_producto')->textInput(['maxlength' => true]) ?>
 	<i class="fa">
@@ -60,7 +60,7 @@ $marcas=ArrayHelper::map(MarcaProducto::find()->all(),'id_marca_producto','nombr
 
 	<?= $form->field($model, 'descripcion')->textInput(['maxlength' => true]) ?>
 	
-	<?= $form->field($model, 'path_imagen')->widget(FileInput::classname(), [
+	<?= $form->field($model, 'image')->widget(FileInput::classname(), [
     'options' => ['type'=>'file' ,'accept' => 'image/*'],
 	]);
 	?>

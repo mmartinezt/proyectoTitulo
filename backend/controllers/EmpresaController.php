@@ -73,6 +73,20 @@ class EmpresaController extends Controller
             ]);
         }
     }
+	
+	    public function actionCreate2()
+    {
+        $model = new Empresa();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['cotizacion/create', 'id' => $model->rut_empresa]);
+        } else {
+			$this->layout = 'mainModal';
+            return $this->render('create', [
+                'model' => $model,
+            ]);
+        }
+    }
 
     /**
      * Updates an existing Empresa model.

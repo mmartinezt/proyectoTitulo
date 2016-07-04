@@ -73,6 +73,20 @@ class TipoEmpleadoController extends Controller
             ]);
         }
     }
+	
+	public function actionCreate2()
+    {
+        $model = new TipoEmpleado();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['empleado/create']);
+        } else {
+			$this->layout = 'mainModal';
+            return $this->render('create', [
+                'model' => $model,
+            ]);
+        }
+    }
 
     /**
      * Updates an existing TipoEmpleado model.

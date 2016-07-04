@@ -84,8 +84,9 @@ class PackController extends Controller
 							$model2->save();			
 					}
 					return $this->redirect(['view', 'id' => $model->id_pack]);
-			}
-			//else echo("error al guardar pack");
+			}else
+			echo("Error al guardar el pack");
+			
 			
         } else {
 			

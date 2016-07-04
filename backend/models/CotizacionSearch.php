@@ -18,7 +18,7 @@ class CotizacionSearch extends Cotizacion
     public function rules()
     {
         return [
-            [['id_cotizacion', 'id_cliente', 'id_servicio'], 'integer'],
+            [['id_cotizacion', 'id_cliente'], 'integer'],
             [['fecha', 'comentario'], 'safe'],
         ];
     }
@@ -62,7 +62,6 @@ class CotizacionSearch extends Cotizacion
             'id_cotizacion' => $this->id_cotizacion,
             'fecha' => $this->fecha,
             'id_cliente' => $this->id_cliente,
-            'id_servicio' => $this->id_servicio,
         ]);
 
         $query->andFilterWhere(['like', 'comentario', $this->comentario]);

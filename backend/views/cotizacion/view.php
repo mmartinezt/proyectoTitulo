@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model backend\models\Cotizacion */
 
 $this->title = $model->id_cotizacion;
-$this->params['breadcrumbs'][] = ['label' => 'Cotizacions', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Cotizaciones', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="cotizacion-view">
@@ -15,11 +15,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id_cotizacion], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id_cotizacion], [
+        <?= Html::a('Actualizar', ['update', 'id' => $model->id_cotizacion], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Eliminar', ['delete', 'id' => $model->id_cotizacion], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => '¿Estás seguro que deseas eliminar este registro?',
                 'method' => 'post',
             ],
         ]) ?>
@@ -32,8 +32,17 @@ $this->params['breadcrumbs'][] = $this->title;
             'fecha',
             'id_cliente',
             'comentario',
-            'id_servicio',
         ],
     ]) ?>
+	
+	<?php
+	echo Html::a('<i class="fa glyphicon glyphicon-hand-up"></i> Generar documento PDF', ['/cotizacion/pdf', 'id_cotizacion'=> $model->id_cotizacion], [
+		'class'=>'btn btn-danger', 
+		'target'=>'_blank', 
+		'data-toggle'=>'tooltip', 
+		'title'=>'Cotizacion formal exportada a PDF'
+	]);
+?>
+	
 
 </div>

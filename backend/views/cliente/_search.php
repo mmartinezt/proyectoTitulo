@@ -21,9 +21,15 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'rut_empresa') ?>
 
-    <?= $form->field($model, 'comuna') ?>
+    <?= $form->field($model, 'nombres') ?>
 
-    <?= $form->field($model, 'ciudad') ?>
+    <?= $form->field($model, 'apellidos') ?>
+
+    <?php // echo $form->field($model, 'rut_cliente') ?>
+
+    <?php // echo $form->field($model, 'comuna') ?>
+
+    <?php // echo $form->field($model, 'ciudad') ?>
 
     <?php // echo $form->field($model, 'calle') ?>
 

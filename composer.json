@@ -21,7 +21,10 @@
         "dmstr/yii2-adminlte-asset": "2.*",
         "himiklab/yii2-colorbox-widget": "*",
         "kartik-v/yii2-widget-fileinput": "@dev",
-        "kartik-v/yii2-widget-select2": "@dev"
+        "kartik-v/yii2-widget-select2": "@dev",
+        "kartik-v/yii2-widget-datepicker": "@dev",
+        "kartik-v/yii2-widget-datetimepicker": "*",
+        "kartik-v/yii2-mpdf": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

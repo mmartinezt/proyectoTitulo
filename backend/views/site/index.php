@@ -1,7 +1,13 @@
 <?php
 
 /* @var $this yii\web\View */
+use yii\helpers\Url;
+use backend\models\Producto;
+use backend\models\Oferta;
+use yii\Helpers\ArrayHelper;
 
+$prds=ArrayHelper::map(Producto::find()->all(),'id_prodcto','nombre_producto');
+$ofertas=ArrayHelper::map(Oferta::find()->all(),'id_oferta','id_producto');
 
 ?>
 <div class="site-index">
@@ -15,14 +21,14 @@
           <!-- small box -->
           <div class="small-box bg-aqua">
             <div class="inner">
-              <h3>0</h3>
-
+              <h3><?php echo (count($prds)); ?></h3>
               <p>Cantidad Productos</p>
             </div>
             <div class="icon">
               <i class="ion ion-bag"></i>
             </div>
-            <a href="#" class="small-box-footer">Ver Todos <i class="fa fa-arrow-circle-right"></i></a>
+			
+            <a href="<?php echo(Url::toRoute('producto/index')); ?>" class="small-box-footer">Ver Todos <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -30,14 +36,13 @@
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
-              <h3>0<sup style="font-size: 20px"></sup></h3>
-
+              <h3><?php echo (count($ofertas)); ?><sup style="font-size: 20px"></sup></h3>
               <p>Promociones Activas</p>
             </div>
             <div class="icon">
               <i class="ion ion-stats-bars"></i>
             </div>
-            <a href="#" class="small-box-footer">Ver Promociones <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="<?php echo(Url::toRoute('oferta/index')); ?>" class="small-box-footer">Ver Promociones <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -72,112 +77,8 @@
         </div>
         <!-- ./col -->
       </div>
-
-      <!-- /.row -->
-	  
-      <!-- Main row -->
-      <div class="row">
-        <!-- Left col -->
-        <section class="col-lg-8 connectedSortable">
-          <!-- Custom tabs (Charts with tabs)-->
-          <div class="nav-tabs-custom">
-            <!-- Tabs within a box -->
-            <ul class="nav nav-tabs pull-right">
-              <li class="active"><a href="#revenue-chart" data-toggle="tab">Gráfico Área</a></li>
-              <li><a href="#sales-chart" data-toggle="tab">Gráfico Circular</a></li>
-              <li class="pull-left header"><i class="fa fa-inbox"></i> Instalación Servicios</li>
-            </ul>
-            <div class="tab-content no-padding">
-              <!-- Morris chart - Sales -->
-              <div class="chart tab-pane active" id="revenue-chart" style="position: relative; height: 345px;"></div>
-              <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;"></div>
-            </div>
-          </div>
-          <!-- /.nav-tabs-custom -->
-		  
-		 </section> 
-		  
-		
-        <!-- Left col -->
-        <section class="col-lg-4 connectedSortable">
-		
-		<!-- PRODUCT LIST -->
-          <div class="box box-primary">
-            <div class="box-header with-border">
-              <h3 class="box-title">Últimas Cotizaciones Recibidas </h3>
-
-              <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-              </div>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-              <ul class="products-list product-list-in-box">
-                <li class="item">
-                  <div class="product-img">
-                    <img src="<?php echo Yii::$app->request->baseUrl; ?>/images/user.jpg" class="img-circle" alt="User Image" />
-                  </div>
-                  <div class="product-info">
-                    <a href="javascript:void(0)" class="product-title">ID cotización:
-                      <span class="label label-success pull-right">05/05/2016</span></a>
-                        <span class="product-description">
-                          Descripción...
-                        </span>
-                  </div>
-                </li>
-                <!-- /.item -->
-                <li class="item">
-                  <div class="product-img">
-                    <img src="<?php echo Yii::$app->request->baseUrl; ?>/images/user.jpg" class="img-circle" alt="User Image" />
-                  </div>
-                  <div class="product-info">
-                    <a href="javascript:void(0)" class="product-title">ID cotización:
-                      <span class="label label-success pull-right">05/05/2016</span></a>
-                        <span class="product-description">
-                          Descripción...
-                        </span>
-                  </div>
-                </li>
-                <!-- /.item -->
-                <li class="item">
-                  <div class="product-img">
-                    <img src="<?php echo Yii::$app->request->baseUrl; ?>/images/user.jpg" class="img-circle" alt="User Image" />
-                  </div>
-                  <div class="product-info">
-                    <a href="javascript:void(0)" class="product-title">ID cotización: 
-						<span class="label label-success pull-right">05/05/2016</span></a>
-                        <span class="product-description">
-                          Descripción...
-                        </span>
-                  </div>
-                </li>
-                <!-- /.item -->
-                <li class="item">
-                  <div class="product-img">
-                    <img src="<?php echo Yii::$app->request->baseUrl; ?>/images/user.jpg" class="img-circle" alt="User Image" />
-                  </div>
-                  <div class="product-info">
-                    <a href="javascript:void(0)" class="product-title">ID cotización:
-                      <span class="label label-success pull-right">05/05/2016</span></a>
-                        <span class="product-description">
-                          Descripción...
-                        </span>
-                  </div>
-                </li>
-                <!-- /.item -->
-              </ul>
-            </div>
-            <!-- /.box-body -->
-            <div class="box-footer text-center">
-              <a href="javascript:void(0)" class="uppercase">Ver Todas las Cotizaciones</a>
-            </div>
-            <!-- /.box-footer -->
-          </div>
-       
-		</section>
-		</div>
-		
+<div class="row">
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d51241.28499065762!2d-72.13873128130459!3d-36.61241578018611!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9668d7c2b6f00259%3A0x14fe84c4f1092ea8!2zQ2hpbGxhbiwgQ2hpbGzDoW4sIFJlZ2nDs24gZGVsIELDrW8gQsOtbw!5e0!3m2!1ses-419!2scl!4v1467272098310" width="100%" height="500" frameborder="0" style="border:0" allowfullscreen></iframe>
+</div>
 		
 </div>

@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Oferta */
 
-$this->title = $model->id_oferta;
+$this->title = $model->descripcion;
 $this->params['breadcrumbs'][] = ['label' => 'Ofertas', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

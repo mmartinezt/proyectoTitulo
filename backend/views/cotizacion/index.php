@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel backend\models\CotizacionSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Cotizacions';
+$this->title = 'Cotizaciones';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="cotizacion-index">
@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Cotizacion', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Crear Cotización', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -28,7 +28,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'fecha',
             'id_cliente',
             'comentario',
-            'id_servicio',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

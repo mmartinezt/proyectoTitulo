@@ -66,13 +66,14 @@ class EmpleadoController extends Controller
         $model = new Empleado();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->rut_empleado]);
+            return $this->redirect(['view', 'id' => $model->numero_empleado]);
         } else {
             return $this->render('create', [
                 'model' => $model,
             ]);
         }
     }
+	
 
     /**
      * Updates an existing Empleado model.

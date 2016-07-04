@@ -12,6 +12,8 @@ use backend\models\TipoProducto;
  */
 class modelsTipoProductoSearch extends TipoProducto
 {
+	
+	
     /**
      * @inheritdoc
      */
@@ -20,7 +22,9 @@ class modelsTipoProductoSearch extends TipoProducto
         return [
             [['id_tipo_producto'], 'integer'],
             [['nombre', 'descripcion'], 'safe'],
-        ];
+			
+			
+		];
     }
 
     /**
@@ -67,4 +71,5 @@ class modelsTipoProductoSearch extends TipoProducto
 
         return $dataProvider;
     }
+	
 }

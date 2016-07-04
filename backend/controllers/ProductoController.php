@@ -8,6 +8,7 @@ use backend\models\ProductoSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * ProductoController implements the CRUD actions for Producto model.
@@ -66,9 +67,59 @@ class ProductoController extends Controller
     {
         $model = new Producto();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+			
+			$image = UploadedFile::getInstance($model,'image');
+			if(empty($image)){
+				//agregar imagen por defecto
+			}
+			else{
+				$model->filename = $image->name;
+				$ext=end((explode(".",$image->name)));
+				$model->path_imagen = Yii::$app->security->generateRandomString().".".$ext;
+				$path = $model->getImageFile();
+				
+				$image->saveAs($path);
+			
+			}
+			
+			 $model->save();
+			
+			
             return $this->redirect(['view', 'id' => $model->id_prodcto]);
         } else {
+            return $this->render('create', [
+                'model' => $model,
+            ]);
+        }
+    }
+	
+	    public function actionCreate2()
+    {
+        $model = new Producto();
+
+        if ($model->load(Yii::$app->request->post())) {
+			
+			$image = UploadedFile::getInstance($model,'image');
+			if(empty($image)){
+				//agregar imagen por defecto
+			}
+			else{
+				$model->filename = $image->name;
+				$ext=end((explode(".",$image->name)));
+				$model->path_imagen = Yii::$app->security->generateRandomString().".".$ext;
+				$path = $model->getImageFile();
+				
+				$image->saveAs($path);
+			
+			}
+			
+			 $model->save();
+			
+			
+            return $this->redirect(['view', 'id' => $model->id_prodcto]);
+        } else {
+			$this->layout = 'mainModal';
             return $this->render('create', [
                 'model' => $model,
             ]);

@@ -11,13 +11,13 @@ use Yii;
  * @property string $fecha
  * @property integer $id_cliente
  * @property string $comentario
- * @property integer $id_servicio
  */
 class Cotizacion extends \yii\db\ActiveRecord
 {
-    /**
-     * @inheritdoc
-     */
+    
+	public $productos;
+	public $servicios;
+	
     public static function tableName()
     {
         return 'cotizacion';
@@ -29,9 +29,9 @@ class Cotizacion extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['fecha', 'id_cliente', 'comentario', 'id_servicio'], 'required'],
-            [['fecha'], 'safe'],
-            [['id_cliente', 'id_servicio'], 'integer'],
+            [['fecha', 'id_cliente'], 'required'],
+            [['fecha', 'productos','servicios'], 'safe'],
+            [['id_cliente'], 'integer'],
             [['comentario'], 'string', 'max' => 500],
         ];
     }
@@ -42,11 +42,12 @@ class Cotizacion extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id_cotizacion' => 'Id Cotizacion',
+            'id_cotizacion' => 'Identificador',
             'fecha' => 'Fecha',
-            'id_cliente' => 'Id Cliente',
+            'id_cliente' => 'Cliente',
             'comentario' => 'Comentario',
-            'id_servicio' => 'Id Servicio',
+			'productos' => 'Productos',
+			'servicios' => 'Servicios',
         ];
     }
 }

@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Cliente */
 
-$this->title = $model->id_cliente;
+$this->title = $model->rut_cliente;
 $this->params['breadcrumbs'][] = ['label' => 'Clientes', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -15,11 +15,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id_cliente], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id_cliente], [
+        <?= Html::a('Actualizar', ['update', 'id' => $model->id_cliente], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Eliminar', ['delete', 'id' => $model->id_cliente], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => 'Estás seguro que deseas eliminar este registro?',
                 'method' => 'post',
             ],
         ]) ?>
@@ -31,6 +31,9 @@ $this->params['breadcrumbs'][] = $this->title;
             'id_cliente',
             'id_usuario',
             'rut_empresa',
+            'nombres',
+            'apellidos',
+            'rut_cliente',
             'comuna',
             'ciudad',
             'calle',

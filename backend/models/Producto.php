@@ -23,6 +23,10 @@ class Producto extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+	public $image;
+	public $filename;
+	public $img;
+	
     public static function tableName()
     {
         return 'producto';
@@ -54,6 +58,8 @@ class Producto extends \yii\db\ActiveRecord
             [['nombre_producto', 'descripcion'], 'string', 'max' => 500],
             [['id_marca_producto'], 'string', 'max' => 100],
             [['path_imagen'], 'string', 'max' => 200],
+			[['image','filename'], 'safe'],
+			[['image'],'file','extensions'=>'jpg,gif,png'],
         ];
     }
 
@@ -75,4 +81,8 @@ class Producto extends \yii\db\ActiveRecord
             'precio_venta' => 'Precio Venta',
         ];
     }
+	public function getImageFile(){
+			return isset($this->path_imagen)?'upload/productos/'.$this->path_imagen : null; 
+	}
+	
 }

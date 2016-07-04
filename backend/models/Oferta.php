@@ -29,7 +29,7 @@ class Oferta extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_producto', 'valor_oferta', 'descuento_porcentaje', 'descripcion'], 'required'],
+            [['id_producto', 'descripcion'], 'required'],
             [['id_producto', 'valor_oferta', 'descuento_porcentaje'], 'integer'],
             [['descripcion'], 'string', 'max' => 500],
         ];
@@ -41,8 +41,8 @@ class Oferta extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id_oferta' => 'Id Oferta',
-            'id_producto' => 'Id Producto',
+            'id_oferta' => 'Identificador',
+            'id_producto' => 'Producto',
             'valor_oferta' => 'Valor Oferta',
             'descuento_porcentaje' => 'Descuento Porcentaje',
             'descripcion' => 'Descripción',

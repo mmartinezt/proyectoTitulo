@@ -19,7 +19,7 @@ class ClienteSearch extends Cliente
     {
         return [
             [['id_cliente', 'id_usuario', 'numero', 'codigo_postal'], 'integer'],
-            [['rut_empresa', 'comuna', 'ciudad', 'calle', 'telefono', 'celular', 'descripcion'], 'safe'],
+            [['rut_empresa', 'nombres', 'apellidos', 'rut_cliente', 'comuna', 'ciudad', 'calle', 'telefono', 'celular', 'descripcion'], 'safe'],
         ];
     }
 
@@ -66,6 +66,9 @@ class ClienteSearch extends Cliente
         ]);
 
         $query->andFilterWhere(['like', 'rut_empresa', $this->rut_empresa])
+            ->andFilterWhere(['like', 'nombres', $this->nombres])
+            ->andFilterWhere(['like', 'apellidos', $this->apellidos])
+            ->andFilterWhere(['like', 'rut_cliente', $this->rut_cliente])
             ->andFilterWhere(['like', 'comuna', $this->comuna])
             ->andFilterWhere(['like', 'ciudad', $this->ciudad])
             ->andFilterWhere(['like', 'calle', $this->calle])

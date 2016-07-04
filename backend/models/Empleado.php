@@ -32,7 +32,7 @@ class Empleado extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['rut_empleado', 'numero_empleado', 'id_tipo_empleado', 'nombres', 'apellido_paterno', 'apellido_materno', 'direccion', 'correo_electronico'], 'required'],
+            [['rut_empleado', 'id_tipo_empleado', 'nombres', 'apellido_paterno', 'apellido_materno', 'direccion', 'correo_electronico'], 'required'],
             [['numero_empleado', 'id_tipo_empleado'], 'integer'],
             [['rut_empleado'], 'string', 'max' => 30],
             [['nombres'], 'string', 'max' => 200],
@@ -48,13 +48,13 @@ class Empleado extends \yii\db\ActiveRecord
     {
         return [
             'rut_empleado' => 'Rut Empleado',
-            'numero_empleado' => 'Numero Empleado',
-            'id_tipo_empleado' => 'Id Tipo Empleado',
+            'numero_empleado' => 'Número Empleado',
+            'id_tipo_empleado' => 'Tipo de Empleado',
             'nombres' => 'Nombres',
             'apellido_paterno' => 'Apellido Paterno',
             'apellido_materno' => 'Apellido Materno',
-            'direccion' => 'Direccion',
-            'correo_electronico' => 'Correo Electronico',
+            'direccion' => 'Dirección',
+            'correo_electronico' => 'Correo Electrónico',
         ];
     }
 }

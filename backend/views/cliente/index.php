@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Cliente', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Crear Cliente', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -27,8 +27,11 @@ $this->params['breadcrumbs'][] = $this->title;
             'id_cliente',
             'id_usuario',
             'rut_empresa',
-            'comuna',
-            'ciudad',
+            'nombres',
+            'apellidos',
+            // 'rut_cliente',
+            // 'comuna',
+            // 'ciudad',
             // 'calle',
             // 'numero',
             // 'codigo_postal',

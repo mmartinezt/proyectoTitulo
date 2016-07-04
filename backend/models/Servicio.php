@@ -40,9 +40,9 @@ class Servicio extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id_servicio' => 'Id Servicio',
+            'id_servicio' => 'Identificador',
             'nombre' => 'Nombre',
-            'descripcion' => 'Descripcion',
+            'descripcion' => 'Descripción',
             'valor' => 'Valor',
         ];
     }

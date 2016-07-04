@@ -4,10 +4,13 @@ namespace backend\controllers;
 
 use Yii;
 use backend\models\Cotizacion;
+use backend\models\CotizacionProducto;
+use backend\models\CotizacionServicio;
 use backend\models\CotizacionSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use kartik\mpdf\Pdf;
 
 /**
  * CotizacionController implements the CRUD actions for Cotizacion model.
@@ -65,9 +68,33 @@ class CotizacionController extends Controller
     {
         $model = new Cotizacion();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id_cotizacion]);
+        if ($model->load(Yii::$app->request->post())) {
+			
+			if($model->save()){
+					
+					$pros=$model->productos;
+					//guarda productos
+					foreach( $pros as $n => $id){
+							$model2 = new CotizacionProducto();
+							$model2->id_cotizacion = $model->id_cotizacion;
+							$model2->id_producto=$id;
+							$model2->save();			
+					}
+					
+					$servi=$model->servicios;
+					//guarda servicios
+					foreach($servi as $n => $id){
+							$model2 = new CotizacionServicio();
+							$model2->id_cotizacion = $model->id_cotizacion;
+							$model2->id_servicio=$id;
+							$model2->save();			
+					}
+					return $this->redirect(['view', 'id' => $model->id_cotizacion]);
+			}else
+			echo("Error al guardar el pack");
         } else {
+			date_default_timezone_set('America/Santiago');
+			$model->fecha = date('Y/m/d h:i:s');
             return $this->render('create', [
                 'model' => $model,
             ]);
@@ -121,4 +148,16 @@ class CotizacionController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+	
+	public function actionPdf($id_cotizacion) {
+ 
+        $pdf = new Pdf([
+
+        'content' => $this->renderPartial('formatoCotizacion', ['id' => $id_cotizacion]),
+		//'content' =>'<p>Hallo World</p>',
+        
+    ]);
+    return $pdf->render();
+    }
+	
 }

@@ -45,7 +45,7 @@ class SubcategoriaProducto extends \yii\db\ActiveRecord
     {
         return [
             'id_subcategoria_producto' => 'Identificador',
-            'id_categoria_producto' => 'Id Categoría Producto',
+            'id_categoria_producto' => 'Categoría Producto',
             'nombre' => 'Nombre',
             'descripcion' => 'Descripción',
         ];

@@ -82,6 +82,7 @@ class MarcaProductoController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(Url::toRoute('producto/create'));
         } else {
+			$this->layout='mainModal';
             return $this->render('create2', [
                 'model' => $model,
             ]);

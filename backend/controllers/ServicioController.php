@@ -73,6 +73,20 @@ class ServicioController extends Controller
             ]);
         }
     }
+	
+	    public function actionCreate2()
+    {
+        $model = new Servicio();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id_servicio]);
+        } else {
+			$this->layout = 'mainModal';
+            return $this->render('create', [
+                'model' => $model,
+            ]);
+        }
+    }
 
     /**
      * Updates an existing Servicio model.

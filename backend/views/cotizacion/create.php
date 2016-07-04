@@ -6,8 +6,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Cotizacion */
 
-$this->title = 'Create Cotizacion';
-$this->params['breadcrumbs'][] = ['label' => 'Cotizacions', 'url' => ['index']];
+$this->title = 'Crear Cotización';
+$this->params['breadcrumbs'][] = ['label' => 'Cotizaciones', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="cotizacion-create">
