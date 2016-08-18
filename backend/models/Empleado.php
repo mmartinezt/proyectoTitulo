@@ -29,6 +29,12 @@ class Empleado extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+	
+	public function getTipoempleado() {
+		return $this->hasOne(TipoEmpleado::className(), ['id_tipo_empleado' => 'id_tipo_empleado']);
+	} 
+	 
+	 
     public function rules()
     {
         return [

@@ -24,9 +24,13 @@ class Producto extends \yii\db\ActiveRecord
      * @inheritdoc
      */
 	 
-	public function getSubcategoria() {
-		return $this->hasOne(SubcategoriaProducto::className(), ['id_subcategoria_producto' => 'id_subcategoria_producto']);
-	}	
+	public $nombre;
+	public $rut;
+	public $correo;
+	public $fono;
+	public $instalacion;
+	 
+
 	
 	public function getCategoria() {
 		return $this->hasOne(CategoriaProducto::className(), ['id_categoria_producto' => 'id_categoria_producto']);
@@ -53,6 +57,8 @@ class Producto extends \yii\db\ActiveRecord
             [['nombre_producto', 'descripcion'], 'string', 'max' => 500],
             [['id_marca_producto'], 'string', 'max' => 100],
             [['path_imagen'], 'string', 'max' => 200],
+			[['nombre', 'correo', 'rut', 'fono', 'instalacion'],'safe'],
+			
         ];
     }
 
@@ -72,6 +78,7 @@ class Producto extends \yii\db\ActiveRecord
             'path_imagen' => 'Imagen',
             'precio_compra' => 'Precio Compra',
             'precio_venta' => 'Precio Venta',
+			'instalacion' => '¿Quiére solicitar instalación de estos productos?',
         ];
     }
 }

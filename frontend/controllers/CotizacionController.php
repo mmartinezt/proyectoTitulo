@@ -4,6 +4,7 @@ namespace frontend\controllers;
 
 use Yii;
 use frontend\models\Cotizacion;
+use frontend\models\Cliente;
 use frontend\models\CotizacionSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -122,11 +123,11 @@ class CotizacionController extends Controller
         }
     }
 	
-	public function actionPdf() {
- 
+	public function actionPdf($id) {
+ 			
         $pdf = new Pdf([
-
-        'content' => $this->renderPartial('formatoCotizacion', ['id' =>'7']),
+		
+        'content' => $this->renderPartial('formatoCotizacion', ['id' =>$id]),
 		//'content' =>'<p>Hallo World</p>',
         
     ]);

@@ -53,7 +53,7 @@ class Producto extends \yii\db\ActiveRecord
 	public function rules()
     {
         return [
-            [['id_categoria_producto', 'id_subcategoria_producto', 'nombre_producto', 'id_marca_producto','descripcion' , 'stock', 'path_imagen', 'precio_compra', 'precio_venta'], 'required'],
+            [['id_categoria_producto', 'id_subcategoria_producto', 'nombre_producto', 'id_marca_producto','descripcion' , 'stock', 'precio_compra', 'precio_venta'], 'required'],
             [['id_categoria_producto', 'id_subcategoria_producto', 'stock', 'precio_compra', 'precio_venta'], 'integer'],
             [['nombre_producto', 'descripcion'], 'string', 'max' => 500],
             [['id_marca_producto'], 'string', 'max' => 100],
@@ -79,6 +79,7 @@ class Producto extends \yii\db\ActiveRecord
             'path_imagen' => 'Imagen',
             'precio_compra' => 'Precio Compra',
             'precio_venta' => 'Precio Venta',
+			'image' => 'Imagen',
         ];
     }
 	public function getImageFile(){

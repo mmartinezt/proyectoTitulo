@@ -21,11 +21,8 @@ $prds=ArrayHelper::map(Producto::find()->all(),'id_prodcto','nombre_producto');
     <?= $form->field($model, 'nombre')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'descripcion')->textInput(['maxlength' => true]) ?>
-
-	<?= $form->field($model, 'path_imagen')->widget(FileInput::classname(), [
-    'options' => ['type'=>'file' ,'accept' => 'image/*'],
-	]);
-	?>
+	
+	<?= $form->field($model, 'imagee')->fileInput() ?>
 
     <?= $form->field($model, 'precio')->textInput() ?>
 

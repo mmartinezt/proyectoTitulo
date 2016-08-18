@@ -13,8 +13,12 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="producto-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-
+<?php
     
+echo('<a href='.Yii::$app->request->baseUrl.'/index.php?r=producto%2Fagregar&id=0><img src='.Yii::$app->request->baseUrl.'/upload/productos/carrito-10.png style="position: fixed; top: 51px; right: 0px;" width=70></img></a>');	
+?>	
+
+
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -25,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
 				 'attribute' => 'img',
 				 'label'=>'Imagen',
 				 'format'=>'html',
-				 'value' => function($data){ return Html::img(Yii::$app->request->baseUrl.'/upload/productos/'.$data->path_imagen,['width'=>'80']);  }
+				 'value' => function($data){ return Html::img(Yii::$app->request->baseUrl.'../../../backend/web/upload/productos/'.$data->path_imagen,['width'=>'80']);  }
 			],
             [
 				 'attribute' => 'categoria',
@@ -34,10 +38,11 @@ $this->params['breadcrumbs'][] = $this->title;
 			],
 			
             [
-				 'attribute' => 'subcategoria',
+				 'attribute' => 'id_subcategoria_producto',
 				 'label'=>'Sub-categoría',
-				 'value' => 'subcategoria.nombre'
+				 'value' => 'id_subcategoria_producto'
 			 ],
+			 
             'nombre_producto',
 		
             [
@@ -59,7 +64,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'agregar' => function ($url, $model) {
 									return Html::a('<span class="glyphicon glyphicon-shopping-cart"></span>', $url, 
 									[
-										'title' => Yii::t('app', 'Change today\'s lists'),
+										'title' => Yii::t('app', 'Agregar al carrito'),
 									]);
                     }
                 ],],

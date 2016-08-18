@@ -30,7 +30,11 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'rut_empleado',
             'numero_empleado',
-            'id_tipo_empleado',
+			[
+				 'attribute' => 'tipoempleado.descripcion',
+				 'label'=>'Tipo Empleado',
+			],
+            
             'nombres',
             'apellido_paterno',
             'apellido_materno',

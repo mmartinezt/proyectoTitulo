@@ -9,6 +9,8 @@ use yii\widgets\DetailView;
 $this->title = $model->nombre_producto;
 $this->params['breadcrumbs'][] = ['label' => 'Productos', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+
+
 ?>
 <div class="producto-view">
 
@@ -29,6 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id_prodcto',
+			'nombre_producto',
 			[
 				 'attribute' => 'categoria.nombre',
 				 'label'=>'Categoría',
@@ -36,20 +39,22 @@ $this->params['breadcrumbs'][] = $this->title;
 			[
 				 'attribute' => 'subcategoria.nombre',
 				 'label'=>'Sub-categoría',
-			],
+			],            
             
-            'nombre_producto',
 			[
 				 'attribute' => 'marca.nombre',
 				 'label'=>'Marca',
 			],
-            
 			'descripcion',
             'stock',
-            'path_imagen',
             'precio_compra',
             'precio_venta',
-        ],
+			[
+				 'attribute' => 'path_imagen',
+				 'format'=>'html',
+				 'value' => '<img src='.Yii::$app->request->baseUrl.'/upload/productos/'.$model->path_imagen.' width=120></img>'  
+			],
+		],
     ]) ?>
 
 </div>

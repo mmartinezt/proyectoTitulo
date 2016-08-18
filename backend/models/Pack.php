@@ -22,6 +22,11 @@ class Pack extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+	 
+	public $imagee;
+	public $filename;
+	public $img;
+	
     public static function tableName()
     {
         return 'pack';
@@ -38,12 +43,13 @@ class Pack extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nombre', 'descripcion', 'path_imagen', 'precio', 'estado'], 'required'],
+            [['nombre', 'descripcion', 'precio', 'estado'], 'required'],
             [['precio', 'estado'], 'integer'],
-			[['Productos'], 'safe'],
             [['nombre'], 'string', 'max' => 100],
             [['descripcion'], 'string', 'max' => 500],
             [['path_imagen'], 'string', 'max' => 200],
+			[['imagee', 'filename', 'Productos'], 'safe'],
+			[['imagee'],'file','extensions'=>'jpg,gif,png'],
         ];
     }
 
@@ -60,7 +66,12 @@ class Pack extends \yii\db\ActiveRecord
             'precio' => 'Precio',
             'estado' => 'Estado',
 			'Productos' => 'Productos',
+			'imagee' => 'Imagen',
 			
         ];
     }
+	public function getImageFile(){
+			return isset($this->path_imagen)?'upload/packs/'.$this->path_imagen : null; 
+	}
+	
 }

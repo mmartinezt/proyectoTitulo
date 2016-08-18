@@ -3,120 +3,116 @@ use yii\helpers\Url;
 use backend\models\CategoriaProducto;
 use backend\models\SubcategoriaProducto;
 use yii\Helpers\ArrayHelper;
+use yii2mod\bxslider\BxSlider;
 
 $categorias=ArrayHelper::map(CategoriaProducto::find()->all(),'id_categoria_producto','nombre');
 
 /* @var $this yii\web\View */
 ?>
-    <div class="body-content">
 
 
-<table width = "100%" weight="500px" border="1" style="border-collapse:collapse;">
-	<tr>
-		<td width ="100%" >	
-			slider ofertas y promociones
-		</td>
-	</tr>
-	<tr style="border:none;">
-		<td width ="100%" >	
-			slider 1... slider 2... slider 3...
-		</td>
-	</tr>
-	<tr>
-		<td width="10%" style="text-align:center; margin:100px; padding:100px;">cuerpo de slider</td>
-	</tr>
-	<tr style="border:none;">
-		<td width ="100%" style="text-align: right">	
-			control de slider
-		</td>
-	</tr>
-</table>
-<br/>
-<br/>
-<br/>
-<table width="100%" border="1">
-<tr>
-	<td width="18%"> Categorías productos</td>
-	<td width="82%"> Slider publicidad de la empresa, folletos, medios de pagos, descuentos del mes etc...</td>
-</tr>	
-</table>
+<div id="slideshow">
+   <div align="center">
+     <img src="http://www.automatec.cl/modules/mod_image_show_gk4/cache/banners.banner8CHgk-is-161.jpg">
+   </div>
+   <div align="center">
+     <img src="http://www.automatec.cl/modules/mod_image_show_gk4/cache/banners.banner4CHgk-is-161.jpg">
+   </div>
 
-    
-<nav class="navbar navbar-default sidebar" role="navigation">
-    <div class="container-fluid">
-		<div class="navbar-header">
-		  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-sidebar-navbar-collapse-1">
-			<span class="sr-only">Categorías de Productos</span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-		  </button>      
-		</div>
-	
-    <div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        
-		<?php
-			foreach($categorias as $id => $nombre){
-				$subcategorias=ArrayHelper::map(SubcategoriaProducto::find()->where(['id_categoria_producto' => $id])->all(),'id_subcategoria_producto','nombre');
-		?>
-		<li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo($nombre); ?> <span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity"></span></a>
-          <ul class="dropdown-menu forAnimate" role="menu">
+</div>
+
+<style>
+#slideshow { 
+    margin: 0px 0px 30px auto; 
+    position: relative; 
+    width: 100%; 
+    height: 200px; 
+    padding: 10px; 
+    box-shadow: 0 0 20px rgba(0,0,0,0.4); 
+}
+
+#slideshow > div { 
+    position: absolute; 
+    top: 10px; 
+    left: 10px; 
+    right: 10px; 
+    bottom: 10px; 
+}
+</style>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+<script>
+$("#slideshow > div:gt(0)").hide();
+
+setInterval(function() { 
+  $('#slideshow > div:first')
+    .fadeOut(1000)
+    .next()
+    .fadeIn(1000)
+    .end()
+    .appendTo('#slideshow');
+},  5000);
+</script>
+
+
+
+<div class="row">
+  <div class="col-xs-2">
+	<nav class="navbar navbar-default sidebar" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+			  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-sidebar-navbar-collapse-1">
+				<span class="sr-only">Categorías de Productos</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			  </button>      
+			</div>
+		
+			<div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
+			  <ul class="nav navbar-nav">    
 				<?php
-					foreach($subcategorias as $idSubcategoria => $nombre2){
+					foreach($categorias as $id => $nombre){
+						$subcategorias=ArrayHelper::map(SubcategoriaProducto::find()->where(['id_categoria_producto' => $id])->all(),'id_subcategoria_producto','nombre');
 				?>
-					<li><a href="<?php echo(Url::toRoute(['producto/vitrina', 'id' => $idSubcategoria])); ?>"><?php echo($nombre2); ?></a></li>
+				<li class="dropdown">
+				  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo($nombre); ?> <span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity"></span></a>
+				  <ul class="dropdown-menu forAnimate" role="menu">
+						<?php
+							foreach($subcategorias as $idSubcategoria => $nombre2){
+						?>
+							<li><a href="<?php echo(Url::toRoute(['producto/vitrina', 'id' => $idSubcategoria])); ?>"><?php echo($nombre2); ?></a></li>
+						<?php
+							}
+						?>
+				  </ul>
+				</li>          
 				<?php
 					}
-				?>
-          </ul>
-        </li>          
-		
-		<?php
-			}
-		?>
-		
-		
-      </ul>
-    </div>
+				?>	
+			  </ul>
+			</div>
+		</div>
+	</nav>
   </div>
-</nav>
-	 
-
-<div style="padding: 10px; float: right; width: 75%; text-align: right;">
+  
+  <div class="col-xs-7">
+	<div style="padding: 10px; float: right; width: 75%; text-align: right;">
 		<center>
 		
 			<img src="images/banner1.jpg" />
 		
 			<br/>
-		</center>
-		<span>(Imagen referencial)</span>
-		
-	<table width="100%" border="1" align="center">
-		<tr>
-			<td width="25%" align="center" style="margin:30px; padding:30px;"> banner1</td>
-			<td width="25%" align="center"> banner2</td>
-			<td width="25%" align="center"> banner3</td>
-		</tr>	
-		
-	</table>
-		
-	
+		</center>		
+	</div>
+  </div>
 </div>
-</br></br></br></br></br></br></br></br>
-</br></br></br></br></br></br></br></br>
-</br></br></br></br></br></br></br></br>
-</br></br></br>
-
+    
+<br>
+<br>
 <center>
-Logos de empresas asociados
-</br>
-ctrl izquierda
-<img src="images/logos.png"/>
-ctrl derecha
-</br>
-(imagen referencial)
+	<img src="images/logos.png"/>
 </center>
 
 

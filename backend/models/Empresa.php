@@ -29,7 +29,6 @@ class Empresa extends \yii\db\ActiveRecord
     {
         return [
             [['rut_empresa', 'nombre_empresa', 'nombre_fantasia', 'giro_empresa'], 'required'],
-            [['rut_empresa'], 'integer'],
             [['nombre_empresa', 'nombre_fantasia', 'giro_empresa'], 'string', 'max' => 500],
         ];
     }

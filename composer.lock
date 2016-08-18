@@ -4,9 +4,70 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e4ccf879163d357862976b04b70a9280",
-    "content-hash": "c9859373f55628df6be29c0b2d2f3029",
+    "hash": "a4644383fd28c14a6745bab27614b299",
+    "content-hash": "0e65b79a41a8f46821475ffc5586ac08",
     "packages": [
+        {
+            "name": "2amigos/yii2-gallery-widget",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/2amigos/yii2-gallery-widget.git",
+                "reference": "77ae3c5e19b027f5c2f2147ce8c14a7a916ad6fc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/2amigos/yii2-gallery-widget/zipball/77ae3c5e19b027f5c2f2147ce8c14a7a916ad6fc",
+                "reference": "77ae3c5e19b027f5c2f2147ce8c14a7a916ad6fc",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/blueimp-gallery": "~2.15.0",
+                "yiisoft/yii2": "~2.0.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0",
+                "scrutinizer/ocular": "~1.1"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "asset-installer-paths": {
+                    "npm-asset-library": "vendor/npm",
+                    "bower-asset-library": "vendor/bower"
+                },
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "dosamigos\\gallery\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "2amigOS! Consulting Group",
+                    "email": "hola@2amigos.us",
+                    "homepage": "http://2amigos.us",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Blueimp gallery widget for the Yii framework",
+            "homepage": "https://github.com/2amigos/yii2-gallery-widget",
+            "keywords": [
+                "2amigos",
+                "gallery",
+                "widget",
+                "yii",
+                "yii 2",
+                "yii2"
+            ],
+            "time": "2016-01-04 06:27:31"
+        },
         {
             "name": "almasaeed2010/adminlte",
             "version": "v2.3.3",
@@ -46,6 +107,71 @@
                 "web"
             ],
             "time": "2016-03-24 14:31:41"
+        },
+        {
+            "name": "bower-asset/blueimp-gallery",
+            "version": "2.15.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/blueimp/Gallery.git",
+                "reference": "2b65bd364dd5945809f2eda61fb3eb4a0a6fa095"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/blueimp/Gallery/zipball/2b65bd364dd5945809f2eda61fb3eb4a0a6fa095",
+                "reference": "2b65bd364dd5945809f2eda61fb3eb4a0a6fa095",
+                "shasum": ""
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": [
+                    "css/blueimp-gallery.css",
+                    "css/blueimp-gallery-indicator.css",
+                    "css/blueimp-gallery-video.css",
+                    "img/error.png",
+                    "img/error.svg",
+                    "img/loading.gif",
+                    "img/play-pause.png",
+                    "img/play-pause.svg",
+                    "img/video-play.png",
+                    "img/video-play.svg",
+                    "js/blueimp-helper.js",
+                    "js/blueimp-gallery.js",
+                    "js/blueimp-gallery-fullscreen.js",
+                    "js/blueimp-gallery-indicator.js",
+                    "js/blueimp-gallery-video.js",
+                    "js/blueimp-gallery-vimeo.js",
+                    "js/blueimp-gallery-youtube.js"
+                ],
+                "bower-asset-ignore": [
+                    "/*.*",
+                    "css/demo.css",
+                    "js/demo.js"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "blueimp Gallery is a touch-enabled, responsive and customizable image and video gallery, carousel and lightbox, optimized for both mobile and desktop web browsers. It features swipe, mouse and keyboard navigation, transition effects, slideshow functionality, fullscreen support and on-demand content loading and can be extended to display additional content types.",
+            "keywords": [
+                "carousel",
+                "desktop",
+                "effects",
+                "fullscreen",
+                "gallery",
+                "image",
+                "keyboard",
+                "lightbox",
+                "mobile",
+                "mouse",
+                "navigation",
+                "responsive",
+                "slideshow",
+                "swipe",
+                "touch",
+                "transition",
+                "video"
+            ]
         },
         {
             "name": "bower-asset/bootstrap",
@@ -94,6 +220,50 @@
                 "mobile-first",
                 "responsive",
                 "web"
+            ]
+        },
+        {
+            "name": "bower-asset/bx-slider.js",
+            "version": "v4.2.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/stevenwanderski/bxslider-4.git",
+                "reference": "fd0b8d4fb18cfc9d74a127255832821516747e5d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/stevenwanderski/bxslider-4/zipball/fd0b8d4fb18cfc9d74a127255832821516747e5d",
+                "reference": "fd0b8d4fb18cfc9d74a127255832821516747e5d",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/jquery": ">=1.8.3"
+            },
+            "require-dev": {
+                "bower-asset/bootstrap": ">=3.3.2",
+                "bower-asset/highlightjs": "~8.4.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": [
+                    "dist/jquery.bxslider.js",
+                    "dist/jquery.bxslider.css",
+                    "dist/images/bx_loader.gif",
+                    "dist/images/controls.png"
+                ],
+                "bower-asset-ignore": [
+                    "docs_src/*",
+                    "docs/*"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "keywords": [
+                "bxslider",
+                "javascript",
+                "jquery",
+                "library"
             ]
         },
         {
@@ -1123,6 +1293,46 @@
                 "mailer"
             ],
             "time": "2016-05-01 08:45:47"
+        },
+        {
+            "name": "yii2mod/yii2-bx-slider",
+            "version": "1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yii2mod/yii2-bx-slider.git",
+                "reference": "c3da16e53f0583bd5d55b2d828ea41fbe287661a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yii2mod/yii2-bx-slider/zipball/c3da16e53f0583bd5d55b2d828ea41fbe287661a",
+                "reference": "c3da16e53f0583bd5d55b2d828ea41fbe287661a",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/bx-slider.js": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "yii2mod\\bxslider\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Igor Chepurnoy",
+                    "email": "igorzfort@gmail.com"
+                }
+            ],
+            "description": "Bx-slider widget based on bx-slider extension {@link http://bxslider.com)",
+            "keywords": [
+                "module",
+                "yii2"
+            ],
+            "time": "2015-07-24 13:46:06"
         },
         {
             "name": "yiisoft/yii2",

@@ -41,7 +41,7 @@ AppAsset::register($this);
 <footer class="footer">
     <div class="container">
         <p class="pull-left"> Cotización Válida por 15 Días desde la fecha de emisión</p>
-		<p class="pull-right"> mayor información escríbanos a contacto@smartfullsecurity.cl</p>
+		<p class="pull-right"> para mayor información escríbanos a contacto@smartfullsecurity.cl</p>
     </div>
 </footer>
 

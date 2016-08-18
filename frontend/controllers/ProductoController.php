@@ -4,10 +4,14 @@ namespace frontend\controllers;
 
 use Yii;
 use frontend\models\Producto;
+use frontend\models\Cliente;
+use frontend\models\Cotizacion;
+use frontend\models\CotizacionProducto;
 use frontend\models\ProductoSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use frontend\models\ClienteServicioPeticion;
 
 /**
  * ProductoController implements the CRUD actions for Producto model.
@@ -79,19 +83,59 @@ class ProductoController extends Controller
 	
 	public function actionFormulario()
     {
-        $model = new Producto();
-			$this->layout = 'mainModal';
-            return $this->render('formulario', [
-                'model' => $model,
-            ]);
-        
+       $model = new Producto();
+		if ($model->load(Yii::$app->request->post())) {
+						
+			$cliente = new Cliente();
+			$cotizacion = new Cotizacion();
+			$solicitud = new ClienteServicioPeticion();
+			
+			//crear cliente	
+			$cliente->rut_cliente = $model->rut;
+			$cliente->nombres = $model->nombre;
+			$cliente->descripcion = $model->correo;
+			$cliente->celular = $model->fono;
+			$cliente->save();
+
+			//crear cotización
+			$cotizacion->fecha = date('Y/m/d h:i:s');
+			$cotizacion->comentario = "Cotización software en linea";
+			$cotizacion->id_cliente = $cliente->id_cliente;
+			$cotizacion->save();
+			
+			//crear cotizacionProducto
+			$session = Yii::$app->session;
+			foreach($session['producto'] as $indice => $producto){
+				if($producto!=null){
+					$cotizacionProducto= new CotizacionProducto();
+					$cotizacionProducto->id_cotizacion = $cotizacion->id_cotizacion;
+					$cotizacionProducto->id_producto = $producto;
+					$cotizacionProducto->save();
+				}
+			}
+			//crear solicitud de servicio si corresponde
+			if($model->instalacion=='si'){
+				$solicitud->id_cliente = $cliente->id_cliente;
+				$solicitud->id_cotizacion = $cotizacion->id_cotizacion;
+				$solicitud->fecha = date('Y/m/d h:i:s');
+				$solicitud->save();
+			}
+			
+			
+            return $this->redirect(['cotizacion/pdf', 'id' => $cotizacion->id_cotizacion]);
+        } else {
+					$this->layout = 'mainModal';
+					return $this->render('_formulario', [
+						'model' => $model,
+					]);
+				}
     }
 	
-	 public function actionVitrina($id)
+	public function actionVitrina($id)
     {
         $searchModel = new ProductoSearch();
 		if($id != 0){
-			//$searchModel->id_subcategoria_producto = $id;
+			$searchModel->id_subcategoria_producto = $id;
 		}
 			
 		$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
@@ -104,28 +148,31 @@ class ProductoController extends Controller
 	
 	public function actionAgregar($id)
     {
-			$session = Yii::$app->session;
-	
-
+		$session = Yii::$app->session;
+		
+		if($id==0){
+			return $this->render('carrito');
+		}
+		else{
+			
+			
 			// directamente usando $_SESSION (asegura te de que Yii::$app->session->open() ha sido llamado)
-			if(!isset($session['contador'])){
+			if(!isset($session['producto'])){
 				$_SESSION['contador']=1;
 				$_SESSION['producto'][1] = $id;
 				
 			}else{
 				if(in_array($id, $session['producto'])){
-
 				}
 				else{
 					$contador=$session['contador'];
 					$_SESSION['contador'] = $contador+1;
 					$_SESSION['producto'][$contador+1] = $id;
 				}
-					
 			}
 			
             return $this->render('carrito');
-        
+        }
     }
 	
 	public function actionEliminar($id)

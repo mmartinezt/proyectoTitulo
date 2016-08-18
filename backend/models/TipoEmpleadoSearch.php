@@ -15,6 +15,9 @@ class TipoEmpleadoSearch extends TipoEmpleado
     /**
      * @inheritdoc
      */
+	 
+
+	
     public function rules()
     {
         return [
@@ -42,11 +45,12 @@ class TipoEmpleadoSearch extends TipoEmpleado
     public function search($params)
     {
         $query = TipoEmpleado::find();
-
+		
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+			
         ]);
 
         $this->load($params);
@@ -56,6 +60,7 @@ class TipoEmpleadoSearch extends TipoEmpleado
             // $query->where('0=1');
             return $dataProvider;
         }
+		
 
         // grid filtering conditions
         $query->andFilterWhere([
@@ -64,7 +69,7 @@ class TipoEmpleadoSearch extends TipoEmpleado
 
         $query->andFilterWhere(['like', 'nombre_tipo_empleado', $this->nombre_tipo_empleado])
             ->andFilterWhere(['like', 'descripcion', $this->descripcion]);
-
+			
         return $dataProvider;
     }
 }

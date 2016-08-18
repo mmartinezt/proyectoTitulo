@@ -22,6 +22,8 @@ AppAsset::register($this);
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 </head>
+
+
 <body>
 <?php $this->beginBody() ?>
 
@@ -40,20 +42,41 @@ AppAsset::register($this);
         //['label' => 'About', 'url' => ['/site/about']],
         //['label' => 'Contact', 'url' => ['/site/contact']],
 		['label' => 'VITRINA DE PRODUCTOS', 'url' => ['/producto/vitrina', 'id'=>0]],
+		
+		   Yii::$app->user->isGuest ? (
+					['label' => 'INICIAR SESIÓN', 'url' => ['/site/login']]
+				) : 
+					    [
+                                'label' => 'ÁREA USUARIO',
+                                'icon' => 'fa fa-circle-o',
+                                'url' => '#',
+                                'items' => [
+										(
+											'<li><center><div class="avatar" style="background-image: url('.Yii::$app->request->baseUrl.'/images/usuario-registrado.jpg)"></div>'
+											. Html::beginForm(['#'], 'post', ['class' => 'navbar-form'])
+											. Html::Button(
+												'Administrar cuenta',
+												['class' => 'btn btn-success']
+											)
+											. Html::endForm()
+											. '</li>'
+										),
+										(
+											'<li>'
+											. Html::beginForm(['/site/logout'], 'post', ['class' => 'navbar-form'])
+											. Html::submitButton(
+												'Cerrar Sesión (' . Yii::$app->user->identity->username . ')',
+												['class' => 'btn btn-danger']
+											)
+											. Html::endForm()
+											. '</li></center>'
+										)
+								
+											],
+                        ],
+					
     ];
-    if (Yii::$app->user->isGuest) {
-        //$menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
-        $menuItems[] = ['label' => 'Iniciar Sesión', 'url' => ['/site/login']];
-    } else {
-        $menuItems[] = '<li>'
-            . Html::beginForm(['/site/logout'], 'post')
-            . Html::submitButton(
-                'Cerrar Sesión (' . Yii::$app->user->identity->username . ')',
-                ['class' => 'btn btn-link']
-            )
-            . Html::endForm()
-            . '</li>';
-    }
+
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => $menuItems,
@@ -82,3 +105,17 @@ AppAsset::register($this);
 </body>
 </html>
 <?php $this->endPage() ?>
+
+<style>
+div.avatar {
+    
+    height: 100px;
+    width: 100px;
+	border: PowderBlue 5px solid;
+    
+    background-repeat: no-repeat;
+    background-position: 50%;
+    border-radius: 50%;
+    background-size: 100% auto;
+}
+</style>

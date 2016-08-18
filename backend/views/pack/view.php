@@ -31,20 +31,49 @@ $this->params['breadcrumbs'][] = $this->title;
             'id_pack',
             'nombre',
             'descripcion',
-            'path_imagen',
             'precio',
             'estado',
+			[
+				 'attribute' => 'path_imagen',
+				 'label'=>'Imagen',
+				 'format'=>'html',
+				 'value' => '<img src='.Yii::$app->request->baseUrl.'/upload/packs/'.$model->path_imagen.' width=120></img>'  
+			],
         ],
     ])?>
 	
-	Productos:
-	<br>
-	<?php
-	foreach($model->productos as $producto){
-		echo($producto->producto->nombre_producto);
-		echo('<br>');
-	}	
-	
-	?>
+	        <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Productos en pack</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body no-padding">
+              <table class="table table-striped">
+                <tr>
+                  <th style="width: 15px">Código</th>
+                  <th>Descripción</th>
+                  <th>Imagen</th>
+                </tr>
+				
+				<?php
+				foreach($model->productos as $producto){		
+				?>
+				
+					<tr>
+					  <td><?php echo($producto->producto->id_prodcto); ?></td>
+					  <td><?php echo($producto->producto->nombre_producto); ?></td>
+					  <td><?php echo('<img src='.Yii::$app->request->baseUrl.'/upload/productos/'.$producto->producto->path_imagen.' width=80></img>'); ?></td>
+					  
+					</tr>
+				
+				<?php
+				}	
+				?>
+				
+              </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
 
 </div>

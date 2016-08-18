@@ -50,10 +50,8 @@ $servicioPrecios = array();
 		$servicioDescripcion[$indice] = $ser->nombre;
 		$servicioPrecios[$indice] = $ser->valor;
 		
-		$indice++;
-		
+		$indice++;	
 	}
-	
 	
 ?>
 
@@ -79,7 +77,7 @@ $servicioPrecios = array();
         <span class="text">SMART FULL SECURITY</span><br />
         <span class="text">CAMINO PARQUE LANTAÑO #765</span><br />
         <span class="text">FONO: 422235736 +569971050031</span><br />
-        <span class="text">eMAIL: VENTAS@SMARTFULLSECURITY.CL</span>
+        <span class="text">E-MAIL: VENTAS@SMARTFULLSECURITY.CL</span>
      </strong>
     </td>
   </tr>
@@ -116,12 +114,12 @@ $servicioPrecios = array();
 
 <table width="100%" border="1" style="border-collapse:collapse;">
   <tr bgcolor= "#000000">
-		<td width="10%" style="text-align:center; margin:5px; padding:5px; color:#FFFFFF;">Producto</td>
-		<td width="50%" style="text-align:left; margin:5px; padding:5px;"></td>
+		<td width="10%" style="text-align:center; margin:5px; padding:5px; color:#FFFFFF;">Código</td>
+		<td width="48%" style="text-align:left; margin:5px; padding:5px; color:#FFFFFF;">Producto/Servicio</td>
 		<td width="10%" style="text-align:right; margin:5px; padding:5px; color:#FFFFFF;">Cantidad</td>
 		<td width="16%" style="text-align:left; margin:5px; padding:5px; color:#FFFFFF;">Precio Unitario</td>
 		<td width="5%" style="text-align:left; margin:5px; padding:5px; color:#FFFFFF;">Dcto</td>
-		<td width="10%" style="text-align:right; margin:5px; padding:5px; color:#FFFFFF;">Total</td>
+		<td width="12%" style="text-align:right; margin:5px; padding:5px; color:#FFFFFF;">Total</td>
     </tr>
 	
 	<?php

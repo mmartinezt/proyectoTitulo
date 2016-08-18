@@ -15,10 +15,13 @@ class EmpleadoSearch extends Empleado
     /**
      * @inheritdoc
      */
-    public function rules()
+	 
+	public $tipoempleado;
+    
+	public function rules()
     {
         return [
-            [['rut_empleado', 'nombres', 'apellido_paterno', 'apellido_materno', 'direccion', 'correo_electronico'], 'safe'],
+            [['rut_empleado', 'nombres', 'apellido_paterno', 'apellido_materno', 'direccion', 'correo_electronico', 'tipoempleado'], 'safe'],
             [['numero_empleado', 'id_tipo_empleado'], 'integer'],
         ];
     }
@@ -42,6 +45,7 @@ class EmpleadoSearch extends Empleado
     public function search($params)
     {
         $query = Empleado::find();
+		$query->joinWith(['tipoempleado']);
 
         // add conditions that should always apply here
 
@@ -56,6 +60,11 @@ class EmpleadoSearch extends Empleado
             // $query->where('0=1');
             return $dataProvider;
         }
+		
+		$dataProvider->sort->attributes['tipoempleado'] = [
+			'asc' => ['tipo_empleado.descripcion' => SORT_ASC],
+			'desc' => ['tipo_empleado.descripcion' => SORT_DESC],
+		];
 
         // grid filtering conditions
         $query->andFilterWhere([
@@ -68,7 +77,9 @@ class EmpleadoSearch extends Empleado
             ->andFilterWhere(['like', 'apellido_paterno', $this->apellido_paterno])
             ->andFilterWhere(['like', 'apellido_materno', $this->apellido_materno])
             ->andFilterWhere(['like', 'direccion', $this->direccion])
-            ->andFilterWhere(['like', 'correo_electronico', $this->correo_electronico]);
+            ->andFilterWhere(['like', 'correo_electronico', $this->correo_electronico])
+			->andFilterWhere(['like', 'tipo_empleado.descripcion', $this->tipoempleado]);
+
 
         return $dataProvider;
     }

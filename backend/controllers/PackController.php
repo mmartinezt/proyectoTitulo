@@ -9,6 +9,8 @@ use backend\models\PackSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
+
 
 /**
  * PackController implements the CRUD actions for Pack model.
@@ -70,8 +72,23 @@ class PackController extends Controller
     {
         $model = new Pack();
 		
-		
         if ($model->load(Yii::$app->request->post())) {
+			$image = UploadedFile::getInstance($model,'imagee');
+			
+			if(empty($image)){
+				//agregar imagen por defecto
+				echo("imagen null");
+				die();
+			}
+			else{
+				$model->filename = $image->name;
+				$ext=end((explode(".",$image->name)));
+				$model->path_imagen = Yii::$app->security->generateRandomString().".".$ext;
+				$path = $model->getImageFile();
+				
+				$image->saveAs($path);
+			
+			}
 			
 			if($model->save()){
 					$pros=$model->Productos;

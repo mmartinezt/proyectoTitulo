@@ -53,14 +53,11 @@ $servicioPrecios = array();
 		$indice++;
 		
 	}
-	
-	
 ?>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
 
 </head>
 
@@ -116,12 +113,12 @@ $servicioPrecios = array();
 
 <table width="100%" border="1" style="border-collapse:collapse;">
   <tr bgcolor= "#000000">
-		<td width="10%" style="text-align:center; margin:5px; padding:5px; color:#FFFFFF;">Producto</td>
-		<td width="50%" style="text-align:left; margin:5px; padding:5px;"></td>
+		<td width="10%" style="text-align:center; margin:5px; padding:5px; color:#FFFFFF;">Código</td>
+		<td width="48%" style="text-align:left; margin:5px; padding:5px; color:#FFFFFF;">Producto/Servicio</td>
 		<td width="10%" style="text-align:right; margin:5px; padding:5px; color:#FFFFFF;">Cantidad</td>
 		<td width="16%" style="text-align:left; margin:5px; padding:5px; color:#FFFFFF;">Precio Unitario</td>
 		<td width="5%" style="text-align:left; margin:5px; padding:5px; color:#FFFFFF;">Dcto</td>
-		<td width="10%" style="text-align:right; margin:5px; padding:5px; color:#FFFFFF;">Total</td>
+		<td width="12%" style="text-align:right; margin:5px; padding:5px; color:#FFFFFF;">Total</td>
     </tr>
 	
 	<?php

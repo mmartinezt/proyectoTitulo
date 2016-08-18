@@ -24,12 +24,18 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
+			'numero_empleado',
             'rut_empleado',
-            'numero_empleado',
-            'id_tipo_empleado',
+            
+			[
+				 'attribute' => 'tipoempleado',
+				 'label'=>'Tipo Empleado',
+				 'value' => 'tipoempleado.descripcion'
+			],
+
             'nombres',
             'apellido_paterno',
-            // 'apellido_materno',
+            'apellido_materno',
             // 'direccion',
             // 'correo_electronico',
 

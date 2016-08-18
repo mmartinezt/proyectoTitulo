@@ -54,8 +54,12 @@ class CotizacionController extends Controller
      */
     public function actionView($id)
     {
+		$pros = CotizacionProducto::find()->where(['id_cotizacion' => $id])->all();
+		$servi = CotizacionServicio::find()->where(['id_cotizacion' => $id])->all();
         return $this->render('view', [
             'model' => $this->findModel($id),
+			'pros' => $pros,
+			'servi' => $servi,
         ]);
     }
 
@@ -89,7 +93,7 @@ class CotizacionController extends Controller
 							$model2->id_servicio=$id;
 							$model2->save();			
 					}
-					return $this->redirect(['view', 'id' => $model->id_cotizacion]);
+					return $this->redirect(['view', 'id' => $model->id_cotizacion, 'pros'=>$pros, 'servi'=>$servi]);
 			}else
 			echo("Error al guardar el pack");
         } else {
@@ -97,6 +101,8 @@ class CotizacionController extends Controller
 			$model->fecha = date('Y/m/d h:i:s');
             return $this->render('create', [
                 'model' => $model,
+				'pros'=>'',
+				'servi'=>''
             ]);
         }
     }
@@ -114,7 +120,21 @@ class CotizacionController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id_cotizacion]);
         } else {
-            return $this->render('update', [
+			
+			$datosp= array();
+			$pr = CotizacionProducto::find()->where(['id_cotizacion' => $id])->all();
+			foreach($pr as $indice => $producto){
+				array_push($datosp, $producto->id_producto);
+			}
+			
+			$datoss= array();
+			$sr = CotizacionServicio::find()->where(['id_cotizacion' => $id])->all();
+			foreach($sr as $indice => $servicio){
+				array_push($datoss, $servicio->id_servicio);
+			}
+			$model->productos = $datosp;
+			$model->servicios = $datoss;
+			return $this->render('update', [
                 'model' => $model,
             ]);
         }
@@ -148,6 +168,7 @@ class CotizacionController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+	
 	
 	public function actionPdf($id_cotizacion) {
  

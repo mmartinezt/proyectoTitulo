@@ -79,7 +79,7 @@ class EmpresaController extends Controller
         $model = new Empresa();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['cotizacion/create', 'id' => $model->rut_empresa]);
+            return $this->redirect(['cliente/create']);
         } else {
 			$this->layout = 'mainModal';
             return $this->render('create', [

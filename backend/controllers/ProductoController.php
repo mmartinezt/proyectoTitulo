@@ -70,23 +70,21 @@ class ProductoController extends Controller
         if ($model->load(Yii::$app->request->post())) {
 			
 			$image = UploadedFile::getInstance($model,'image');
+			
 			if(empty($image)){
 				//agregar imagen por defecto
+				$model->path_imagen = 'producto.jpg';
 			}
 			else{
 				$model->filename = $image->name;
 				$ext=end((explode(".",$image->name)));
 				$model->path_imagen = Yii::$app->security->generateRandomString().".".$ext;
 				$path = $model->getImageFile();
-				
-				$image->saveAs($path);
-			
+				$image->saveAs($path);	
 			}
 			
-			 $model->save();
-			
-			
-            return $this->redirect(['view', 'id' => $model->id_prodcto]);
+			$model->save();
+			return $this->redirect(['view', 'id' => $model->id_prodcto]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -112,11 +110,9 @@ class ProductoController extends Controller
 				
 				$image->saveAs($path);
 			
-			}
-			
+			}	
 			 $model->save();
-			
-			
+				
             return $this->redirect(['view', 'id' => $model->id_prodcto]);
         } else {
 			$this->layout = 'mainModal';

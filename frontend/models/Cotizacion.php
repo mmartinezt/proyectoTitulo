@@ -32,6 +32,7 @@ class Cotizacion extends \yii\db\ActiveRecord
             [['fecha'], 'safe'],
             [['id_cliente'], 'integer'],
             [['comentario'], 'string', 'max' => 500],
+	
         ];
     }
 

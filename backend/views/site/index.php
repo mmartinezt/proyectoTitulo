@@ -3,11 +3,13 @@
 /* @var $this yii\web\View */
 use yii\helpers\Url;
 use backend\models\Producto;
+use backend\models\ClienteServicioPeticion;
 use backend\models\Oferta;
 use yii\Helpers\ArrayHelper;
 
 $prds=ArrayHelper::map(Producto::find()->all(),'id_prodcto','nombre_producto');
 $ofertas=ArrayHelper::map(Oferta::find()->all(),'id_oferta','id_producto');
+$solicitudes=ArrayHelper::map(ClienteServicioPeticion::find()->all(),'id_cliente_servicio_peticion','id_cliente');
 
 ?>
 <div class="site-index">
@@ -50,14 +52,13 @@ $ofertas=ArrayHelper::map(Oferta::find()->all(),'id_oferta','id_producto');
           <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
-              <h3>0</h3>
-
+              <h3><?php echo (count($solicitudes)); ?></h3>
               <p>Servicios Pendientes</p>
             </div>
             <div class="icon">
               <i class="ion ion-person-add"></i>
             </div>
-            <a href="#" class="small-box-footer">Ver Solicitud de Servicios pendientes <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="<?php echo(Url::toRoute('cliente-servicio-peticion/index')); ?>" class="small-box-footer">Ver Solicitud de Servicios pendientes <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
