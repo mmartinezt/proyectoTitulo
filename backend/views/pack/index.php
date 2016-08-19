@@ -28,9 +28,24 @@ $this->params['breadcrumbs'][] = $this->title;
             'nombre',
             'descripcion',
             //'path_imagen',
-            'precio',
-            'estado',
-
+			[
+				'attribute' => 'precio',
+				'format' => 'html',
+				'value' => function($data){
+								  return '$ '.Html::decode(Html::encode(number_format($data->precio, 0, ',','.')));
+									},			
+			],
+			
+            [    
+				'attribute' => 'estado',
+                'label' => 'Estado',
+				'format' => 'raw',
+                'value' => function($data){
+								  return Html::a(Html::encode(($data->estado === 1)? 'Activo':'Inactivo'),
+										 ['pack/cambiarestado', 'id' => $data->id_pack, 'estado'=>$data->estado],
+										 ['class'=>($data->estado === 1)? 'btn btn-success':'btn btn-danger', 'text-align:center;']);
+									},
+            ],
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>

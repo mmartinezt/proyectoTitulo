@@ -77,8 +77,8 @@ class Producto extends \yii\db\ActiveRecord
 			'descripcion'=>'Descripción',
             'stock' => 'Stock',
             'path_imagen' => 'Imagen',
-            'precio_compra' => 'Precio Compra',
-            'precio_venta' => 'Precio Venta',
+            'precio_compra' => 'Precio Compra ($)',
+            'precio_venta' => 'Precio Venta ($)',
 			'image' => 'Imagen',
         ];
     }

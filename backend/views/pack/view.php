@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Pack */
 
-$this->title = $model->id_pack;
+$this->title = $model->nombre;
 $this->params['breadcrumbs'][] = ['label' => 'Packs', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -31,8 +31,17 @@ $this->params['breadcrumbs'][] = $this->title;
             'id_pack',
             'nombre',
             'descripcion',
-            'precio',
-            'estado',
+			[
+				'attribute' => 'precio',
+				'label' => 'Precio',
+				'format' => 'html',
+				'value' => '$ '.number_format($model->precio ,0 , ',', '.'),		
+			],
+			[
+				'attribute' => 'estado',
+				'format' => 'raw',
+				'value'=> ($model->estado === 1)? 'Activo':'Inactivo',							 
+			],
 			[
 				 'attribute' => 'path_imagen',
 				 'label'=>'Imagen',

@@ -43,8 +43,8 @@ class Oferta extends \yii\db\ActiveRecord
         return [
             'id_oferta' => 'Identificador',
             'id_producto' => 'Producto',
-            'valor_oferta' => 'Valor Oferta',
-            'descuento_porcentaje' => 'Descuento Porcentaje',
+            'valor_oferta' => 'Valor Oferta ($)',
+            'descuento_porcentaje' => 'Descuento (%)',
             'descripcion' => 'Descripción',
         ];
     }

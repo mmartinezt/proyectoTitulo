@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\Helpers\ArrayHelper;
 use backend\models\Producto;
+use kartik\select2\Select2;
 
 $productos=ArrayHelper::map(Producto::find()->all(),'id_prodcto','nombre_producto');
 /* @var $this yii\web\View */
@@ -14,12 +15,21 @@ $productos=ArrayHelper::map(Producto::find()->all(),'id_prodcto','nombre_product
 <div class="oferta-form">
 
     <?php $form = ActiveForm::begin(); ?>
+	
+	<?php
+		echo $form->field($model, 'id_producto')->widget(Select2::classname(), [
+			'data' => $productos,
+			'language' => 'es',
+			'hideSearch' => true,
+			'options' => ['placeholder' => 'Seleccione Producto...'],
+			'pluginOptions' => [
+				'allowClear' => true
+			],
+		]);
 
-    <?= $form->field($model, 'id_producto')->dropDownList($productos, ['prompt'=>'Seleccione Producto...']) ?>
+	?>
 
     <?= $form->field($model, 'valor_oferta')->textInput() ?>
-
-    <?= $form->field($model, 'descuento_porcentaje')->textInput() ?>
 
     <?= $form->field($model, 'descripcion')->textInput(['maxlength' => true]) ?>
 

@@ -26,8 +26,14 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id_oferta',
             'id_producto',
-            'valor_oferta',
-            'descuento_porcentaje',
+			[
+				'attribute' => 'valor_oferta',
+				'label' => 'Valor Oferta',
+				'format' => 'html',
+				'value' => function($data){
+								  return '$ '.Html::decode(Html::encode(number_format($data->valor_oferta, 0, ',','.')));
+									},	
+			],
             'descripcion',
 
             ['class' => 'yii\grid\ActionColumn'],

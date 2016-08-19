@@ -70,29 +70,22 @@ class PackController extends Controller
 	
     public function actionCreate()
     {
-        $model = new Pack();
-		
+        $model = new Pack();	
         if ($model->load(Yii::$app->request->post())) {
 			$image = UploadedFile::getInstance($model,'imagee');
-			
 			if(empty($image)){
 				//agregar imagen por defecto
-				echo("imagen null");
-				die();
+				$model->path_imagen = 'producto.jpg';
 			}
 			else{
 				$model->filename = $image->name;
 				$ext=end((explode(".",$image->name)));
 				$model->path_imagen = Yii::$app->security->generateRandomString().".".$ext;
 				$path = $model->getImageFile();
-				
 				$image->saveAs($path);
-			
-			}
-			
+			}	
 			if($model->save()){
 					$pros=$model->Productos;
-					
 					//guarda productos al pack
 					foreach( $pros as $n => $id){
 							$model2 = new PackProducto();
@@ -103,11 +96,8 @@ class PackController extends Controller
 					return $this->redirect(['view', 'id' => $model->id_pack]);
 			}else
 			echo("Error al guardar el pack");
-			
-			
-        } else {
-			
-			
+		
+        } else {		
             return $this->render('create', [
                 'model' => $model,
             ]);
@@ -122,21 +112,26 @@ class PackController extends Controller
      */
     public function actionUpdate($id)
     {
-		$model = $this->findModel($id);
-		
-		$p=[];
-		$cont=0;
-		foreach($model->productos as $producto){
-			$p[$cont] = $producto->producto->id_prodcto;
-			$cont +=1;
-		}
-		
-		$model->Productos=$p;
-
-      
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+		$model = $this->findModel($id);	
+        if ($model->load(Yii::$app->request->post())) {
+			PackProducto::deleteAll('id_pack = :idpack', [':idpack' => $id]);
+			$produ = $_POST['Pack']['Productos'];
+			foreach( $produ as $idd){
+							$model2 = new PackProducto();
+							$model2->id_pack = $model->id_pack;
+							$model2->id_producto=$idd;
+							$model2->save();			
+					}
+			
             return $this->redirect(['view', 'id' => $model->id_pack]);
         } else {
+			$p=[];
+			$cont=0;
+			foreach($model->productos as $producto){
+				$p[$cont] = $producto->producto->id_prodcto;
+				$cont +=1;
+			}
+			$model->Productos=$p;
             return $this->render('update', [
                 'model' => $model,
             ]);
@@ -155,6 +150,20 @@ class PackController extends Controller
 
         return $this->redirect(['index']);
     }
+	
+	public function actionCambiarestado($id, $estado){
+		$nuevoModel = $this->findModel($id);
+		($estado==0)?$nuevoModel->estado=1:$nuevoModel->estado=0;
+		$nuevoModel->save();
+		$nuevoModel = null;
+		$searchModel = new PackSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+	}
 
     /**
      * Finds the Pack model based on its primary key value.

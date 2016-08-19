@@ -63,7 +63,7 @@ class Pack extends \yii\db\ActiveRecord
             'nombre' => 'Nombre',
             'descripcion' => 'Descripción',
             'path_imagen' => 'Path Imagen',
-            'precio' => 'Precio',
+            'precio' => 'Precio ($)',
             'estado' => 'Estado',
 			'Productos' => 'Productos',
 			'imagee' => 'Imagen',

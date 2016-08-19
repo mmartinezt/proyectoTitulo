@@ -47,8 +47,18 @@ $this->params['breadcrumbs'][] = $this->title;
 			],
 			'descripcion',
             'stock',
-            'precio_compra',
-            'precio_venta',
+			[
+				'attribute' => 'precio_compra',
+				'label' => 'Precio Compra',
+				'format' => 'html',
+				'value' => '$ '.number_format($model->precio_compra ,0 , ',', '.'),		
+			],
+			[
+				'attribute' => 'precio_venta',
+				'label' => 'Precio',
+				'format' => 'html',
+				'value' => '$ '.number_format($model->precio_venta ,0 , ',', '.'),		
+			],
 			[
 				 'attribute' => 'path_imagen',
 				 'format'=>'html',
