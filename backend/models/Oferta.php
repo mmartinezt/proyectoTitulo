@@ -26,11 +26,15 @@ class Oferta extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+	 
+	public function getNombreproducto() {
+		return $this->hasOne(Producto::className(), ['id_prodcto' => 'id_producto']);
+	}
     public function rules()
     {
         return [
             [['id_producto', 'descripcion'], 'required'],
-            [['id_producto', 'valor_oferta', 'descuento_porcentaje'], 'integer'],
+            [['valor_oferta', 'descuento_porcentaje'], 'integer'],
             [['descripcion'], 'string', 'max' => 500],
         ];
     }

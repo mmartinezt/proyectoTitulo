@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use backend\models\Producto;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\OfertaSearch */
@@ -9,6 +10,7 @@ use yii\grid\GridView;
 
 $this->title = 'Ofertas';
 $this->params['breadcrumbs'][] = $this->title;
+
 ?>
 <div class="oferta-index">
 
@@ -25,7 +27,11 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id_oferta',
-            'id_producto',
+			[
+				'attribute' => 'nombreproducto',
+				'label' => 'Nombre Producto',
+				'value' => 'nombreproducto.nombre_producto',
+			],
 			[
 				'attribute' => 'valor_oferta',
 				'label' => 'Valor Oferta',

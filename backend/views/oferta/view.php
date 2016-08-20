@@ -29,7 +29,11 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id_oferta',
-            'id_producto',
+			[
+			 'attribute' => 'nombreproducto',
+			 'label' => 'Nombre Producto',
+			 'value' => 'nombreproducto.nombre_producto',
+			],
             'valor_oferta',
             'descuento_porcentaje',
             'descripcion',

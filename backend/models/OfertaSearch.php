@@ -15,11 +15,13 @@ class OfertaSearch extends Oferta
     /**
      * @inheritdoc
      */
+	 
+	public $nombreproducto;
     public function rules()
     {
         return [
-            [['id_oferta', 'id_producto', 'valor_oferta', 'descuento_porcentaje'], 'integer'],
-            [['descripcion'], 'safe'],
+            [['id_oferta', 'valor_oferta', 'descuento_porcentaje'], 'integer'],
+            [['descripcion', 'nombreproducto'], 'safe'],
         ];
     }
 
@@ -42,6 +44,7 @@ class OfertaSearch extends Oferta
     public function search($params)
     {
         $query = Oferta::find();
+		$query->joinWith(['nombreproducto']);
 
         // add conditions that should always apply here
 
@@ -56,6 +59,11 @@ class OfertaSearch extends Oferta
             // $query->where('0=1');
             return $dataProvider;
         }
+		
+		$dataProvider->sort->attributes['nombreproducto'] = [
+			'asc' => ['producto.nombre' => SORT_ASC],
+			'desc' => ['producto.nombre' => SORT_DESC],
+		];
 
         // grid filtering conditions
         $query->andFilterWhere([
@@ -65,7 +73,8 @@ class OfertaSearch extends Oferta
             'descuento_porcentaje' => $this->descuento_porcentaje,
         ]);
 
-        $query->andFilterWhere(['like', 'descripcion', $this->descripcion]);
+        $query->andFilterWhere(['like', 'descripcion', $this->descripcion])
+		->andFilterWhere(['like', 'producto.nombre', $this->nombreproducto]);
 
         return $dataProvider;
     }
