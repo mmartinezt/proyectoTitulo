@@ -6,6 +6,7 @@ use Yii;
 use backend\models\Pack;
 use backend\models\PackProducto;
 use backend\models\PackSearch;
+use backend\models\Producto;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -180,4 +181,16 @@ class PackController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+	public function actionImagen($id){
+		
+		if($id != 'Buscando…'){
+			$model = Producto::find()->where(['nombre_producto'=>$id])->one();
+			if($model->path_imagen!='')
+				return $model->path_imagen;
+			else
+				return 'producto.jpg';
+		}
+		return null;
+	
+	}
 }

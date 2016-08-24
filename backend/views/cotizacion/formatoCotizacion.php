@@ -75,8 +75,8 @@ $servicioPrecios = array();
      <strong>
         <span class="text">SMART FULL SECURITY</span><br />
         <span class="text">CAMINO PARQUE LANTAÑO #765</span><br />
-        <span class="text">FONO: 422235736 +569971050031</span><br />
-        <span class="text">eMAIL: VENTAS@SMARTFULLSECURITY.CL</span>
+        <span class="text">FONO: +56972791564</span><br />
+        <span class="text">eMAIL: CONTACTO@SMARTFULLSECURITY.CL</span>
      </strong>
     </td>
   </tr>
@@ -128,10 +128,10 @@ $servicioPrecios = array();
 	<tr>
 		<td width="10%" style="text-align:left; margin:5px; padding:5px;"><?php echo($productosIDs[$i]);?></td>
 		<td width="50%" style="text-align:left; margin:5px; padding:5px; "><?php echo($productoDescripcion[$i]);?></td>
-		<td width="10%" style="text-align:center; margin:5px; padding:5px;">1</td>
+		<td width="10%" style="text-align:center; margin:5px; padding:5px;"><?php echo(($productosIDs[$i]===18)? 2: 1); ?></td>
 		<td width="16%" style="text-align:justify; margin:5px; padding:5px;">$ <?php echo(number_format($productoPrecios[$i], 0, ',', '.'));?></td>
 		<td width="5%" style="text-align:left; margin:5px; padding:5px;"></td>
-		<td width="10%" style="text-align:right; margin:5px; padding:5px;">$ <?php echo(number_format($productoPrecios[$i], 0, ',', '.'));?></td>
+		<td width="10%" style="text-align:right; margin:5px; padding:5px;">$ <?php echo(number_format(($productosIDs[$i]===18)? $productoPrecios[$i]*2:$productoPrecios[$i], 0, ',', '.'));?></td>
     </tr>
 		
 	<?php
@@ -145,7 +145,7 @@ $servicioPrecios = array();
 		<td width="10%" style="text-align:left; margin:5px; padding:5px;"><?php echo($serviciosIDs[$i]);?></td>
 		<td width="50%" style="text-align:left; margin:5px; padding:5px; "><?php echo($servicioDescripcion[$i]);?></td>
 		<td width="10%" style="text-align:center; margin:5px; padding:5px;">1</td>
-		<td width="16%" style="text-align:justify; margin:5px; padding:5px;">$ <?php echo(number_format($productoPrecios[$i], 0, ',', '.'));?></td>
+		<td width="16%" style="text-align:justify; margin:5px; padding:5px;">$ <?php echo(number_format($servicioPrecios[$i], 0, ',', '.'));?></td>
 		<td width="5%" style="text-align:left; margin:5px; padding:5px;"></td>
 		<td width="10%" style="text-align:right; margin:5px; padding:5px;">$ <?php echo(number_format($servicioPrecios[$i], 0, ',', '.'));?></td>
     </tr>

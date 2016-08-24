@@ -149,18 +149,14 @@ class ProductoController extends Controller
 	public function actionAgregar($id)
     {
 		$session = Yii::$app->session;
-		
 		if($id==0){
 			return $this->render('carrito');
 		}
 		else{
-			
-			
-			// directamente usando $_SESSION (asegura te de que Yii::$app->session->open() ha sido llamado)
+			//directamente usando $_SESSION (asegura te de que Yii::$app->session->open() ha sido llamado)
 			if(!isset($session['producto'])){
 				$_SESSION['contador']=1;
-				$_SESSION['producto'][1] = $id;
-				
+				$_SESSION['producto'][1] = $id;	
 			}else{
 				if(in_array($id, $session['producto'])){
 				}

@@ -12,6 +12,7 @@ use kartik\file\FileInput;
 
 $categorias=ArrayHelper::map(CategoriaProducto::find()->all(),'id_categoria_producto','nombre');
 $marcas=ArrayHelper::map(MarcaProducto::find()->all(),'id_marca_producto','nombre');
+
 ?>
 
 <?= Colorbox::widget([

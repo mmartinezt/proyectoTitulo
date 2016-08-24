@@ -6,12 +6,34 @@ use backend\models\Producto;
 use kartik\select2\Select2;
 use kartik\file\FileInput;
 use yii\Helpers\ArrayHelper;
+use yii\web\JsExpression;
+use yii\helpers\Url;
 
 $prds=ArrayHelper::map(Producto::find()->all(),'id_prodcto','nombre_producto');
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\Pack */
 /* @var $form yii\widgets\ActiveForm */
+$url = 'localhost'.\Yii::$app->urlManager->baseUrl . '/upload/productos/';
+$url2 = Url::toRoute('pack/imagen');
+$temporal="";
+$format = <<< SCRIPT
+function format(producto) {
+	var archivo="producto.jpg";
+	$.ajax({
+       url: '$url2',
+       data: {id: producto.text},
+	   async:false,       
+		success:function(data) {
+			archivo = data;
+		},
+    });
+	return '<img width="35" class="flag" src="upload/productos/' + archivo + '"/>' + producto.text;
+	
+}
+SCRIPT;
+$escape = new JsExpression("function(m) { return m; }");
+$this->registerJs($format, \yii\web\View::POS_HEAD);
 ?>
 
 <div class="pack-form">
@@ -36,7 +58,6 @@ $prds=ArrayHelper::map(Producto::find()->all(),'id_prodcto','nombre_producto');
 				'allowClear' => true
 			],
 		]);
-
 	?>
 	<?php
 		echo $form->field($model, 'Productos')->widget(Select2::classname(), [
@@ -46,7 +67,10 @@ $prds=ArrayHelper::map(Producto::find()->all(),'id_prodcto','nombre_producto');
 			'options' => ['placeholder' => 'Seleccione productos...', 'multiple' => true],
 			'pluginOptions' => [
 				'tags' => true,
-				'allowClear' => true
+				'allowClear' => true,
+				'templateResult' => new JsExpression('format'),
+				'templateSelection' => new JsExpression('format'),
+				'escapeMarkup' => $escape,
 			],
 		]);
 

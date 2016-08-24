@@ -16,19 +16,116 @@ AppAsset::register($this);
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
 <head>
+
+        <script src="archivosIndex/js/jquery.js"></script>
+        <script type="text/javascript" src="archivosIndex/js/jquery.mixitup.js"></script>
+        <script type="text/javascript" src="archivosIndex/js/bootstrap.js"></script>
+        <script type="text/javascript" src="archivosIndex/js/modernizr.custom.js"></script>
+        <script type="text/javascript" src="archivosIndex/js/jquery.bxslider.js"></script>
+        <script type="text/javascript" src="archivosIndex/js/jquery.cslider.js"></script>
+        <script type="text/javascript" src="archivosIndex/js/jquery.placeholder.js"></script>
+        <script type="text/javascript" src="archivosIndex/js/jquery.inview.js"></script>
+        <!-- Load google maps api and call initializeMap function defined in app.js -->
+        <script async="" defer="" type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false&callback=initializeMap"></script>
+        <!-- css3-mediaqueries.js for IE8 or older -->
+        <!--[if lt IE 9]>
+            <script src="js/respond.min.js"></script>
+        <![endif]-->
+        <script type="text/javascript" src="archivosIndex/js/app.js"></script>
+		
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="archivosIndex/images/ico/apple-touch-icon-144.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="archivosIndex/images/ico/apple-touch-icon-114.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="archivosIndex/images/apple-touch-icon-72.png">
+        <link rel="apple-touch-icon-precomposed" href="archivosIndex/images/ico/apple-touch-icon-57.png">
+        <link rel="shortcut icon" href="archivosIndex/images/ico/favicon.ico">
+
+        <link rel="stylesheet" type="text/css" href="archivosIndex/css/jquery.cslider.css" />
+        <link rel="stylesheet" type="text/css" href="archivosIndex/css/jquery.bxslider.css" />
+        <link rel="stylesheet" type="text/css" href="archivosIndex/css/animate.css" />
     <meta charset="<?= Yii::$app->charset ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
+	
 </head>
 
+<style>
+.navbar {
+    background: #181A1C;
+    margin-bottom:0;
+    min-height:70px;
+}
+
+.navbar-fixed-top {
+    min-height:65px;
+    height:65px;
+    padding-top:0;
+}
+.navbar-inner {
+    background: #181A1C;
+    border-radius:0;
+    filter: none;
+    border: none;
+    box-shadow: none;
+}
+.navbar .brand img {
+    width:170px;
+    height:45px;
+}
+.navbar .nav > li > a {
+    text-transform:uppercase;
+    line-height: ;
+    vertical-align: middle;
+    margin:10px 3px;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    border: 1px solid #181A1C;
+    box-shadow: none;
+    font-size:15px;
+    text-shadow: none;
+    color: #fff;
+    transition: border-color 1s ease;
+}
+.navbar .nav > li:hover> a, .navbar .nav > .active > a, .navbar .nav > .active > a:hover, .navbar .nav > .active > a:focus {
+    border: 1px solid #FECE1A;
+    color: #fff;
+    background-color: #181A1C;
+    transition: border-color 1s ease;
+}
+.nav-pills {
+    margin-bottom: 30px;
+}
+.nav-pills > li > a {
+    background: transparent;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    margin-right:5px;
+    padding-left:25px;
+    padding-right:25px;
+    border: 1px solid #181A1C;
+}
+.nav-pills > li > a:hover, .nav-pills > .active > a, .nav-pills > .active > a:hover, .nav-pills > .active > a:focus {
+    background: #181A1C;
+    color: #fff;
+}
+.navbar .btn-navbar:hover, .navbar .btn-navbar {
+    border-radius:0;
+    background:#FECE1A;
+    color: #000;
+}
+
+
+</style>
 
 <body>
+
 <?php $this->beginBody() ?>
 
 <div class="wrap">
-<img src="images/logoweb.png"/>
+
+
     <?php
     NavBar::begin([
         'brandLabel' => Html::img('@web/images/logoweb.png', ['alt'=>Yii::$app->name]),
@@ -36,13 +133,16 @@ AppAsset::register($this);
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
+		
     ]);
     $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
+        ['label' => 'INICIO', 'url' => ['/site/index']],
         //['label' => 'About', 'url' => ['/site/about']],
         //['label' => 'Contact', 'url' => ['/site/contact']],
 		['label' => 'VITRINA DE PRODUCTOS', 'url' => ['/producto/vitrina', 'id'=>0]],
-		
+		['label' => 'SERVICIOS', 'url' => Yii::$app->request->baseUrl.'#service'],
+		['label' => 'Promociones', 'url' => Yii::$app->request->baseUrl.'#price'],
+		['label' => 'Contacto', 'url' => Yii::$app->request->baseUrl.'#contact'],
 		   Yii::$app->user->isGuest ? (
 					['label' => 'INICIAR SESIÓN', 'url' => ['/site/login']]
 				) : 
@@ -81,10 +181,12 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => $menuItems,
     ]);
+
+
     NavBar::end();
     ?>
 
-    <div class="container">
+    <div class="">
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
@@ -92,6 +194,7 @@ AppAsset::register($this);
         <?= $content ?>
     </div>
 </div>
+
 
 <footer class="footer">
     <div class="container">

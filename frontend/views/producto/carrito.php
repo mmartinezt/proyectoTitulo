@@ -14,6 +14,10 @@ $this->params['breadcrumbs'][] = ['label' => 'Productos', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 echo('<a href='.Yii::$app->request->baseUrl.'/index.php?r=producto%2Fvitrina&id=0><img src='.Yii::$app->request->baseUrl.'/upload/productos/carrito-10.png style="position: fixed; top: 51px; right: 0px;" width=70></img></a>');
 ?>
+<div class = "row">
+<div class="col-lg-1">
+</div>
+<div class="col-lg-10">
 
 <?= Colorbox::widget([
     'targets' => [
@@ -51,7 +55,7 @@ echo('<a href='.Yii::$app->request->baseUrl.'/index.php?r=producto%2Fvitrina&id=
 	</tr>
 	
 	<?php 
-	
+	if(isset($session['producto'])){
 		foreach($session['producto'] as $indice => $producto){
 			if($producto!=null){
 				$pro=Producto::find()->where(['id_prodcto' => $producto])->one();
@@ -76,6 +80,7 @@ echo('<a href='.Yii::$app->request->baseUrl.'/index.php?r=producto%2Fvitrina&id=
 	<?php	
 			}
 		}
+	}
 	
 	?>
 	
@@ -87,9 +92,11 @@ echo('<a href='.Yii::$app->request->baseUrl.'/index.php?r=producto%2Fvitrina&id=
 				
 			<?php
 			$hayProducto=false;
-			foreach($session['producto'] as $indice => $producto){
-				if($producto != null){
-					$hayProducto = true;
+			if(isset($session['producto'])){
+				foreach($session['producto'] as $indice => $producto){
+					if($producto != null){
+						$hayProducto = true;
+					}
 				}
 			}
 			
@@ -111,33 +118,35 @@ echo('<a href='.Yii::$app->request->baseUrl.'/index.php?r=producto%2Fvitrina&id=
 			
 			
 			?>
+				</div>
+	<div class = "row">
+	<div class="col-lg-1">
+</div>
+
 </div>	
 
 </div>
 
-
-<?php 
-	if(isset($_GET['mensaje'])){
-		echo('
-			<div class="col-md-6">
-			  <div class="box box-default">
-				<div class="box-header with-border">
-				  <i class="fa fa-warning"></i>
-				  <h3 class="box-title">Mensaje</h3>
-				</div>
-				<div class="box-body">
-				  <div class="alert alert-info alert-dismissible">
-					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-					<h4><i class="icon fa fa-info"></i> Alert!</h4>
-					Info alert preview. This alert is dismissable.
-				  </div>
-				</div>
-			  </div>
-			</div>
-        ');
-	}
-	
-?>
-
-
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+<script>
+$("html, body").animate({
+    scrollTop: 1
+}, 2);
+</script>
 

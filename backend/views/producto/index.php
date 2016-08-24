@@ -30,7 +30,9 @@ $this->params['breadcrumbs'][] = $this->title;
 				 'attribute' => 'img',
 				 'label'=>'Imagen',
 				 'format'=>'html',
-				 'value' => function($data){ return Html::img(Yii::$app->request->baseUrl.'/upload/productos/'.$data->path_imagen,['width'=>'80']);  }
+				 'value' => function($data){ 
+							 $imagen = ($data->path_imagen=='')? 'producto.jpg' : $data->path_imagen;
+							 return Html::img(Yii::$app->request->baseUrl.'/upload/productos/'.$imagen ,['width'=>'80']);  }
 			],
 			
 			[
