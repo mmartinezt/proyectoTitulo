@@ -39,9 +39,9 @@ class TipoEmpleado extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id_tipo_empleado' => 'Id Tipo Empleado',
-            'nombre_tipo_empleado' => 'Nombre Tipo Empleado',
-            'descripcion' => 'Descripcion',
+            'id_tipo_empleado' => 'Identificador',
+            'nombre_tipo_empleado' => 'Área de trabajo',
+            'descripcion' => 'Descripción',
         ];
     }
 }

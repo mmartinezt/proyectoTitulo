@@ -7,11 +7,16 @@ use frontend\models\Producto;
 use frontend\models\Cliente;
 use frontend\models\Cotizacion;
 use frontend\models\CotizacionProducto;
+use frontend\models\CotizacionServicio;
 use frontend\models\ProductoSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use frontend\models\ClienteServicioPeticion;
+use frontend\models\ClienteServicioEjecucion;
+use yii\filters\AccessControl;
+use app\models\User;
+use frontend\models\SignupForm;
 
 /**
  * ProductoController implements the CRUD actions for Producto model.
@@ -25,6 +30,32 @@ class ProductoController extends Controller
     public function behaviors()
     {
         return [
+		 'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'actions' => ['error', 'vitrina', 'agregar', 'formulario','eliminar'],
+                        'allow' => true,
+                    ],
+					[                
+						'actions' => ['error', 'vitrina', 'agregar', 'formulario','eliminar'],                
+						'allow' => true,            
+						'roles' => ['@'],          
+						'matchCallback' => function ($rule, $action) {                      
+							return User::isUserSimple(Yii::$app->user->identity->id);
+							},
+					],
+					[                
+						'actions' => ['error', 'vitrina', 'agregar', 'formulario','eliminar'],                
+						'allow' => true,            
+						'roles' => ['@'],          
+						'matchCallback' => function ($rule, $action) {                      
+							return User::isUserAdmin(Yii::$app->user->identity->id);
+							},
+					],
+                ],
+            ],
+			
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -83,20 +114,17 @@ class ProductoController extends Controller
 	
 	public function actionFormulario()
     {
+		
        $model = new Producto();
 		if ($model->load(Yii::$app->request->post())) {
 						
-			$cliente = new Cliente();
 			$cotizacion = new Cotizacion();
 			$solicitud = new ClienteServicioPeticion();
+			$ejecucion = new ClienteServicioEjecucion();
 			
-			//crear cliente	
-			$cliente->rut_cliente = $model->rut;
-			$cliente->nombres = $model->nombre;
-			$cliente->descripcion = $model->correo;
-			$cliente->celular = $model->fono;
-			$cliente->save();
-
+			//buscar id cliente con usuario logeado
+			$cliente = Cliente::find()->where(['id_usuario'=>Yii::$app->user->identity->id])->one();
+			
 			//crear cotización
 			$cotizacion->fecha = date('Y/m/d h:i:s');
 			$cotizacion->comentario = "Cotización software en linea";
@@ -107,29 +135,48 @@ class ProductoController extends Controller
 			$session = Yii::$app->session;
 			foreach($session['producto'] as $indice => $producto){
 				if($producto!=null){
-					$cotizacionProducto= new CotizacionProducto();
+					$cotizacionProducto = new CotizacionProducto();
 					$cotizacionProducto->id_cotizacion = $cotizacion->id_cotizacion;
 					$cotizacionProducto->id_producto = $producto;
 					$cotizacionProducto->save();
 				}
 			}
-			//crear solicitud de servicio si corresponde
+							
+			//crear solicitud y ejecución de servicio si corresponde
 			if($model->instalacion=='si'){
+				
+				//crear cotizacionServicio con servicio 0 (pendiente)
+				$cotizacionServicio = new CotizacionServicio();
+				$cotizacionServicio->id_cotizacion = $cotizacion->id_cotizacion;
+				$cotizacionServicio->id_servicio = 0;
+				$cotizacionServicio->save();
+				
+				//crea solicitud de servicio 
 				$solicitud->id_cliente = $cliente->id_cliente;
 				$solicitud->id_cotizacion = $cotizacion->id_cotizacion;
 				$solicitud->fecha = date('Y/m/d h:i:s');
 				$solicitud->save();
+				
+				//crea solicitud de ejecución
+				$ejecucion->id_cliente_peticion = $solicitud->id_cliente_servicio_peticion;
+				$ejecucion->id_empleado = 0;
+				$ejecucion->fecha = '0000-00-00 00:00:00';
+				$ejecucion->estado = 1;
+				$ejecucion->observacion = "en espera de tasación en terreno";
+				$ejecucion->save();
 			}
-			
-			
             return $this->redirect(['cotizacion/pdf', 'id' => $cotizacion->id_cotizacion]);
         } else {
-					$this->layout = 'mainModal';
-					return $this->render('_formulario', [
-						'model' => $model,
-					]);
-				}
-    }
+			if(!\Yii::$app->user->isGuest){
+				 $this->layout = 'mainModal';
+				 return $this->render('formulario2', ['model'=>$model]);
+			}
+			else{
+				$model = new SignupForm();
+				return $this->redirect(['site/login', 'model' => $model]);
+			}
+		}
+	}
 	
 	public function actionVitrina($id)
     {
@@ -137,9 +184,7 @@ class ProductoController extends Controller
 		if($id != 0){
 			$searchModel->id_subcategoria_producto = $id;
 		}
-			
 		$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
         return $this->render('vitrina', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -166,7 +211,6 @@ class ProductoController extends Controller
 					$_SESSION['producto'][$contador+1] = $id;
 				}
 			}
-			
             return $this->render('carrito');
         }
     }
@@ -179,15 +223,12 @@ class ProductoController extends Controller
 			foreach($session['producto'] as $indice => $producto){
 				if($producto==$id){
 					$_SESSION['producto'][$indice] = null;
-					
 					}
 			}
 			echo("Producto eliminado del carrito de compras");
-			
 		}
 		else{
 			echo("El producto seleccionado no se encuentra en el carrito de compras");
-			
 		}
 
 		return $this->render('carrito');

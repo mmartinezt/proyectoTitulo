@@ -1,11 +1,6 @@
-'use strict';
 
-/*
- * A Design by GraphBerry
- * Author: GraphBerry
- * Author URL: http://graphberry.com
- * License: http://graphberry.com/pages/license
- */
+
+'use strict';
  jQuery(document).ready(function ($) {
 
     var lastId,
@@ -76,7 +71,8 @@
         } else {
             $('.scrollup').fadeOut();
         }
-
+		
+		//triangulo bajo el menú y menú visible al mover scroll
         if ($(this).scrollTop() > 130) {
             $('.navbar').addClass('navbar-fixed-top animated fadeInDown');
         } else {
@@ -132,7 +128,7 @@
 
                         //Hack collapse top navigation after clicking
                         topMenu.parent().attr('style', 'height:0px').removeClass('in'); //Close navigation
-                        $('.navbar .btn-navbar').addClass('collapsed');
+                        
 
                         var targetOffset = $target.offset().top - 63;
                         $('html, body').animate({

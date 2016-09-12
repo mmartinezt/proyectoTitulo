@@ -12,6 +12,7 @@ use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+use app\models\User;
 
 /**
  * Site controller
@@ -21,37 +22,73 @@ class SiteController extends Controller
     /**
      * @inheritdoc
      */
-    public function behaviors()
-    {
-        return [
-            'access' => [
-                'class' => AccessControl::className(),
-                'only' => ['logout', 'signup'],
-                'rules' => [
-                    [
-                        'actions' => ['signup'],
-                        'allow' => true,
-                        'roles' => ['?'],
-                    ],
-                    [
-                        'actions' => ['logout'],
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
+	 
+	public $successUrl = 'Success';
+   public function behaviors()
+{
+    return [
+        'access' => [
+            'class' => AccessControl::className(),
+           
+            'rules' => [
+				[                   
+                    'actions' => ['login','error','index', 'auth', 'oAuthSuccess', 'signup'],            
+                    'allow' => true,
                 ],
-            ],
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'logout' => ['post'],
+				
+                [
+                    //El administrador tiene permisos sobre las siguientes acciones
+                    'actions' => ['logout', 'index','vitrina'],
+                    //Esta propiedad establece que tiene permisos
+                    'allow' => true,
+                    //Usuarios autenticados, el signo ? es para invitados
+                    'roles' => ['@'],
+                    //Este método nos permite crear un filtro sobre la identidad del usuario
+                    //y así establecer si tiene permisos o no
+                    'matchCallback' => function ($rule, $action) {
+                        //Llamada al método que comprueba si es un administrador
+                        return User::isUserAdmin(Yii::$app->user->identity->id);
+                    },
                 ],
+                [
+                   //Los usuarios simples tienen permisos sobre las siguientes acciones
+                   'actions' => ['logout'],
+                   //Esta propiedad establece que tiene permisos
+                   'allow' => true,
+                   //Usuarios autenticados, el signo ? es para invitados
+                   'roles' => ['@'],
+                   //Este método nos permite crear un filtro sobre la identidad del usuario
+                   //y así establecer si tiene permisos o no
+                   'matchCallback' => function ($rule, $action) {
+                      //Llamada al método que comprueba si es un usuario simple
+                      return User::isUserSimple(Yii::$app->user->identity->id);
+                  },
+               ],
             ],
-        ];
-    }
+        ],
+ //Controla el modo en que se accede a las acciones, en este ejemplo a la acción logout
+ //sólo se puede acceder a través del método post
+        'verbs' => [
+            'class' => VerbFilter::className(),
+            'actions' => [
+                'logout' => ['get', 'post'],
+            ],
+        ],
+    ];
+}
 
     /**
      * @inheritdoc
      */
+	 
+	public function actionUser(){
+		return $this->render("index");
+	} 
+	
+	public function actionAdmin(){
+		return $this->render("index");
+	}
+	
     public function actions()
     {
         return [
@@ -62,7 +99,11 @@ class SiteController extends Controller
                 'class' => 'yii\captcha\CaptchaAction',
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
             ],
-        ];
+			'auth' => [
+				'class' => 'yii\authclient\AuthAction',
+				'successCallback' => [$this, 'oAuthSuccess'],
+			],
+        ];		
     }
 
     /**
@@ -81,20 +122,37 @@ class SiteController extends Controller
      * @return mixed
      */
     public function actionLogin()
-    {
-        if (!\Yii::$app->user->isGuest) {
-            return $this->goHome();
-        }
+	 {
+		 if (!\Yii::$app->user->isGuest) {
 
-        $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
-        } else {
-            return $this->render('login', [
-                'model' => $model,
-            ]);
-        }
-    }
+	if (User::isUserAdmin(Yii::$app->user->identity->id))
+	{
+	 return $this->redirect(["site/index"]);
+	}
+	else
+	{
+	 return $this->redirect(["site/index"]);
+	}
+		 }
+
+		 $model = new LoginForm();
+		 if ($model->load(Yii::$app->request->post()) && $model->login()) {
+
+			 if (User::isUserAdmin(Yii::$app->user->identity->id))
+	{
+	 return $this->redirect(["site/index"]);
+	}
+	else
+	{
+	 return $this->redirect(["site/index"]);
+	}
+
+		 } else {
+			 return $this->render('login', [
+				 'model' => $model,
+			 ]);
+		 }
+	 }
 
     /**
      * Logs out the current user.
@@ -149,8 +207,12 @@ class SiteController extends Controller
     public function actionSignup()
     {
         $model = new SignupForm();
+		
         if ($model->load(Yii::$app->request->post())) {
-            if ($user = $model->signup()) {
+			$calle = $_POST['calle'];
+			$comuna = $_POST['comuna'];
+			$numero = $_POST['numero'];
+            if ($user = $model->signup($calle, $numero, $comuna)) {
                 if (Yii::$app->getUser()->login($user)) {
                     return $this->goHome();
                 }
@@ -210,4 +272,41 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
+	
+	
+	public function oAuthSuccess($client) {
+	  // do some thing with user data. for example with $userAttributes['email']
+	   $attributes = $client->getUserAttributes();
+        // user login or signup comes here
+        /*
+        Checking facebook email registered yet?
+        Maxsure your registered email when login same with facebook email
+        die(print_r($attributes));
+        */
+       
+        $user = \common\models\User::find()->where(['email'=>$attributes['email']])->one();
+		
+        if(!empty($user)){
+            Yii::$app->user->login($user);
+			$this->successUrl = \yii\helpers\Url::to(['index']);
+        
+        }else{
+				$model = new SignupForm();
+				$model->email = $attributes['email'];
+				$model->username= $attributes['email'];
+				$model->password='contraseña';
+					if ($user = $model->signup()) {
+						if (Yii::$app->getUser()->login($user)) {
+						}
+					}
+				
+            // Save session attribute user from FB
+            $session = Yii::$app->session;
+            $session['attributes']=$attributes;
+            // redirect to form signup, variabel global set to successUrl
+            $this->successUrl = \yii\helpers\Url::to(['index']);
+        }
+	}
+	
+	
 }

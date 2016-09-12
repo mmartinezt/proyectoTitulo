@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel backend\models\MarcaProductoSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Marca de Productos';
+$this->title = 'Administrar Marcas de Productos';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="marca-producto-index">
@@ -22,14 +22,27 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'id_marca_producto',
-            'nombre',
+            
+            [
+			 'attribute'=>'id_marca_producto',
+			 'options'=>['width'=>'3%'],
+            ],
+			
+			[
+			 'attribute'=>'nombre',
+			 'options'=>['width'=>'20%'],
+            ],
             'descripcion',
-            'procedencia',
+			[
+			 'attribute'=>'procedencia',
+			 'options'=>['width'=>'20%'],
+            ],
+            
 
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
+            [
+			 'class' => 'yii\grid\ActionColumn',
+			 'contentOptions' => ['style' => 'width:50px; font-size:23px;'],],
+			],
+		
     ]); ?>
 </div>

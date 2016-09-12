@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel backend\modelsTipoProductoSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Tipo Productos';
+$this->title = 'Administrar Tipos de Productos';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="tipo-producto-index">
@@ -22,8 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
+            
             'id_tipo_producto',
             'nombre',
             'descripcion',

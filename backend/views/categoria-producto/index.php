@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel backend\models\CategoriaProductoSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Categoría Productos';
+$this->title = 'Administrar Categoría de Productos';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="categoria-producto-index">
@@ -22,13 +22,25 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+           
+			[
+			 'attribute'=>'id_categoria_producto',
+			 'options'=>['width'=>'3%'],
+            ],
+            [
+			 'attribute'=>'nombre',
+			 'options'=>['width'=>'30%'],
+            ],
+            [
+			 'attribute'=>'descripcion',
+			 'options'=>['width'=>'60%'],
+            ],
+            
 
-            'id_categoria_producto',
-            'nombre',
-            'descripcion',
-
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+			 'class' => 'yii\grid\ActionColumn',
+			 'contentOptions' => ['style' => 'width:50px; font-size:23px;'],
+			],
         ],
     ]); ?>
 </div>

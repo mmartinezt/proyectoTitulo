@@ -8,6 +8,7 @@ use backend\models\ClienteSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use backend\models\User;
 
 /**
  * ClienteController implements the CRUD actions for Cliente model.
@@ -105,6 +106,21 @@ class ClienteController extends Controller
         } else {
             return $this->render('update', [
                 'model' => $model,
+            ]);
+        }
+    }
+	
+	public function actionUpdatecliente($id)
+    {
+		$cliente = Cliente::find()->where(['id_usuario' => $id])->one();
+		
+        if ($cliente->load(Yii::$app->request->post()) && $cliente->save()) {
+			$model = User::find()->where(['id' => $id])->one();
+            return $this->redirect(['user/profile', 'id' => $cliente->id_usuario]);
+        } else {
+			$this->layout = 'mainModal';
+            return $this->render('updatecliente', [
+                'model' => $cliente,
             ]);
         }
     }

@@ -44,7 +44,7 @@ class Cotizacion extends \yii\db\ActiveRecord
         return [
             'id_cotizacion' => 'Identificador',
             'fecha' => 'Fecha',
-            'id_cliente' => 'Cliente',
+            'id_cliente' => 'Número Cliente',
             'comentario' => 'Comentario',
 			'productos' => 'Productos',
 			'servicios' => 'Servicios',

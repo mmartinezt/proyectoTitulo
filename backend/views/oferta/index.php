@@ -8,7 +8,7 @@ use backend\models\Producto;
 /* @var $searchModel backend\models\OfertaSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Ofertas';
+$this->title = 'Administrar Ofertas';
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
@@ -24,9 +24,11 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'id_oferta',
+               
+			[
+			 'attribute'=>'id_oferta',
+			 'options'=>['width'=>'3%'],
+			],
 			[
 				'attribute' => 'nombreproducto',
 				'label' => 'Nombre Producto',
@@ -42,7 +44,8 @@ $this->params['breadcrumbs'][] = $this->title;
 			],
             'descripcion',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+			'contentOptions' => ['style' => 'width:50px; font-size:23px;'],],
         ],
     ]); ?>
 </div>

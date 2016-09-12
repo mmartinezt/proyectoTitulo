@@ -25,7 +25,7 @@ if($cliente->rut_empresa==''){
 else{
 	$empresa = Empresa::find()->where(['rut_empresa' => $cliente->rut_empresa])->one();
 	$rut = $empresa->rut_empresa;
-	$razonSocial = $empresa->giro;
+	$razonSocial = $empresa->giro_empresa;
 }
 
 $indice=0;

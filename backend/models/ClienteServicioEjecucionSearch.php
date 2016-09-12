@@ -15,11 +15,13 @@ class ClienteServicioEjecucionSearch extends ClienteServicioEjecucion
     /**
      * @inheritdoc
      */
+	public $peticion;
+	
     public function rules()
     {
         return [
             [['id_cliente_ejecucion', 'id_cliente_peticion', 'id_empleado'], 'integer'],
-            [['fecha', 'observacion'], 'safe'],
+            [['fecha', 'observacion', 'estado', 'peticion'], 'safe'],
         ];
     }
 
@@ -43,8 +45,8 @@ class ClienteServicioEjecucionSearch extends ClienteServicioEjecucion
     {
         $query = ClienteServicioEjecucion::find();
 
-        // add conditions that should always apply here
-
+			$query->joinWith(['peticion']);
+		
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
@@ -56,6 +58,11 @@ class ClienteServicioEjecucionSearch extends ClienteServicioEjecucion
             // $query->where('0=1');
             return $dataProvider;
         }
+		
+		$dataProvider->sort->attributes['peticion'] = [
+			'asc' => ['cliente_servicio_peticion.id_cotizacion' => SORT_ASC],
+			'desc' => ['cliente_servicio_peticion.id_cotizacion' => SORT_DESC],
+		];
 
         // grid filtering conditions
         $query->andFilterWhere([
@@ -63,9 +70,11 @@ class ClienteServicioEjecucionSearch extends ClienteServicioEjecucion
             'id_cliente_peticion' => $this->id_cliente_peticion,
             'id_empleado' => $this->id_empleado,
             'fecha' => $this->fecha,
+			'estado' => $this->estado,
         ]);
 
-        $query->andFilterWhere(['like', 'observacion', $this->observacion]);
+        $query->andFilterWhere(['like', 'observacion', $this->observacion])
+		->andFilterWhere(['like', 'cliente_servicio_peticion.id_cotizacion', $this->peticion]);
 
         return $dataProvider;
     }

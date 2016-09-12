@@ -92,6 +92,21 @@ class ClienteController extends Controller
             ]);
         }
     }
+	
+	public function actionUpdatecliente($id)
+    {
+		$cliente = Cliente::find()->where(['id_usuario' => $id])->one();
+		
+        if ($cliente->load(Yii::$app->request->post()) && $cliente->save()) {
+			$model = User::find()->where(['id' => $id])->one();
+            return $this->redirect(['user/profile', 'id' => $cliente->id_usuario]);
+        } else {
+			$this->layout = 'mainModal2';
+            return $this->render('updatecliente', [
+                'model' => $cliente,
+            ]);
+        }
+    }
 
     /**
      * Deletes an existing Cliente model.

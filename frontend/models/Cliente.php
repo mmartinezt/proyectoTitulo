@@ -64,11 +64,11 @@ class Cliente extends \yii\db\ActiveRecord
             'comuna' => 'Comuna',
             'ciudad' => 'Ciudad',
             'calle' => 'Calle',
-            'numero' => 'Numero',
-            'codigo_postal' => 'Codigo Postal',
-            'telefono' => 'Telefono',
+            'numero' => 'Número',
+            'codigo_postal' => 'Código Postal',
+            'telefono' => 'Teléfono',
             'celular' => 'Celular',
-            'descripcion' => 'Descripcion',
+            'descripcion' => 'Descripción',
         ];
     }
 }

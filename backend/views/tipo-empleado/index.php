@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel backend\models\TipoEmpleadoSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Tipo Empleados';
+$this->title = 'Administrar Tipos de Empleados';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="tipo-empleado-index">
@@ -22,13 +22,19 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'id_tipo_empleado',
-            'nombre_tipo_empleado',
+            [
+			 'attribute'=>'id_tipo_empleado',
+			 'options'=>['width'=>'10%'],
+			],
+			[
+			 'attribute'=>'nombre_tipo_empleado',
+			 'options'=>['width'=>'30%'],
+			],
+            
             'descripcion',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+			'contentOptions' => ['style' => 'width:50px; font-size:23px;'],],
         ],
     ]); ?>
 </div>

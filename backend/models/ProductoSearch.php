@@ -92,7 +92,7 @@ class ProductoSearch extends Producto
             ->andFilterWhere(['like', 'path_imagen', $this->path_imagen])
 			 ->andFilterWhere(['like', 'subcategoria_producto.nombre', $this->subcategoria])
 			  ->andFilterWhere(['like', 'categoria_producto.nombre', $this->categoria])
-			   ->andFilterWhere(['like', 'marca.nombre', $this->marca]);
+			   ->andFilterWhere(['like', 'marca_producto.nombre', $this->marca]);
 
         return $dataProvider;
     }

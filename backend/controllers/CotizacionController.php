@@ -62,6 +62,20 @@ class CotizacionController extends Controller
 			'servi' => $servi,
         ]);
     }
+	
+	
+	
+	public function actionViewmodal($id)
+    {
+		$pros = CotizacionProducto::find()->where(['id_cotizacion' => $id])->all();
+		$servi = CotizacionServicio::find()->where(['id_cotizacion' => $id])->all();
+		$this->layout = 'mainModal';
+        return $this->render('viewModal', [
+            'model' => $this->findModel($id),
+			'pros' => $pros,
+			'servi' => $servi,
+        ]);
+    }
 
     /**
      * Creates a new Cotizacion model.

@@ -25,7 +25,7 @@ if($cliente->rut_empresa==''){
 else{
 	$empresa = Empresa::find()->where(['rut_empresa' => $cliente->rut_empresa])->one();
 	$rut = $empresa->rut_empresa;
-	$razonSocial = $empresa->giro;
+	$razonSocial = $empresa->giro_empresa;
 }
 
 $indice=0;
@@ -146,7 +146,7 @@ $servicioPrecios = array();
 		<td width="10%" style="text-align:left; margin:5px; padding:5px;"><?php echo($serviciosIDs[$i]);?></td>
 		<td width="50%" style="text-align:left; margin:5px; padding:5px; "><?php echo($servicioDescripcion[$i]);?></td>
 		<td width="10%" style="text-align:center; margin:5px; padding:5px;">1</td>
-		<td width="16%" style="text-align:justify; margin:5px; padding:5px;">$ <?php echo(number_format($productoPrecios[$i], 0, ',', '.'));?></td>
+		<td width="16%" style="text-align:justify; margin:5px; padding:5px;">$ <?php echo(number_format($servicioPrecios[$i], 0, ',', '.'));?></td>
 		<td width="5%" style="text-align:left; margin:5px; padding:5px;"></td>
 		<td width="10%" style="text-align:right; margin:5px; padding:5px;">$ <?php echo(number_format($servicioPrecios[$i], 0, ',', '.'));?></td>
     </tr>

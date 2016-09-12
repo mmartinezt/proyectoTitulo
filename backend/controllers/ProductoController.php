@@ -9,6 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\UploadedFile;
+use backend\models\User;
 
 /**
  * ProductoController implements the CRUD actions for Producto model.

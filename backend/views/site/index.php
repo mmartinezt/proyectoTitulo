@@ -24,7 +24,7 @@ $solicitudes=ArrayHelper::map(ClienteServicioPeticion::find()->all(),'id_cliente
           <div class="small-box bg-aqua">
             <div class="inner">
               <h3><?php echo (count($prds)); ?></h3>
-              <p>Cantidad Productos</p>
+              <p>Productos en inventario</p>
             </div>
             <div class="icon">
               <i class="ion ion-bag"></i>
@@ -58,7 +58,7 @@ $solicitudes=ArrayHelper::map(ClienteServicioPeticion::find()->all(),'id_cliente
             <div class="icon">
               <i class="ion ion-person-add"></i>
             </div>
-            <a href="<?php echo(Url::toRoute('cliente-servicio-peticion/index')); ?>" class="small-box-footer">Ver Solicitud de Servicios pendientes <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="<?php echo(Url::toRoute('cliente-servicio-ejecucion/index')); ?>" class="small-box-footer">Ver Solicitud de Servicios pendientes <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -79,7 +79,85 @@ $solicitudes=ArrayHelper::map(ClienteServicioPeticion::find()->all(),'id_cliente
         <!-- ./col -->
       </div>
 <div class="row">
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d51241.28499065762!2d-72.13873128130459!3d-36.61241578018611!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9668d7c2b6f00259%3A0x14fe84c4f1092ea8!2zQ2hpbGxhbiwgQ2hpbGzDoW4sIFJlZ2nDs24gZGVsIELDrW8gQsOtbw!5e0!3m2!1ses-419!2scl!4v1467272098310" width="100%" height="500" frameborder="0" style="border:0" allowfullscreen></iframe>
+<h1> Geolocalización de Clientes </h1>
+<div align = "right"><a href="<?php echo(Url::to(['site/viewmap']));?>">ver pantalla completa</a></div>
+<div id="mapCanvas"></div>
 </div>
 		
 </div>
+
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCTBAPgAViiNcLiKvHOD5jDWusVBePea90&signed_in=true"></script>
+
+<script type="text/javascript">
+
+// VARIABLES GLOBALES JAVASCRIPT
+var geocoder;
+var marker;
+var latLng;
+var latLng2;
+var map;
+
+// INICiALIZACION DE MAPA
+function initialize() {
+  geocoder = new google.maps.Geocoder();	
+  latLng = new google.maps.LatLng(-36.6062618 ,-72.1023351);
+
+  map = new google.maps.Map(document.getElementById('mapCanvas'), {
+    zoom:13,
+    center: latLng,
+     });
+
+	var contentString = 
+	  '<div id="infocontent">'+
+		  '<div id="siteNotice">'+
+		  '</div>'+
+		  '<h2 id="firstHeading" class="firstHeading">Información de cliente</h2>'+
+		  '<div id="bodyContent">'+
+		  '<p><b>Nombre Cliente: </b>nombre y apellido</p>'+
+		  '<p><b>Teléfono contacto: </b>+569 7279 1564</p>'+
+		  '<p><b>Servicios Activos: </b><a href="#">13</a> - <a href="#">14</a> - <a href="#">15</a></p>'+
+	   
+		  '</div>'+
+      '</div>';
+
+  var infowindow = new google.maps.InfoWindow({
+    content: contentString
+  });
+
+  var marker = new google.maps.Marker({
+    position: latLng,
+    map: map,
+    title: 'Nombre de Cliente'
+  });
+  marker.addListener('click', function() {
+    infowindow.open(map, marker);
+  });
+}
+
+// Permito la gesti¢n de los eventos DOM
+google.maps.event.addDomListener(window, 'load', initialize);
+
+// OBTIENE LAS COORDENADAS DESDE lA DIRECCION EN LA CAJA DEL FORMULARIO
+function codeAddress() {
+        var address = document.getElementById('calle').value + ' ' + '' + ', ' + document.getElementById('comuna').value;
+			console.log(address);
+		 geocoder.geocode( { 'address': address}, function(results, status) {
+          if (status == google.maps.GeocoderStatus.OK) {
+             updateMarkerPosition(results[0].geometry.location);
+             marker.setPosition(results[0].geometry.location);
+             map.setCenter(results[0].geometry.location);
+           } else {
+            alert('ERROR : ' + status);
+          }
+        });
+      }
+
+</script>
+ <style>
+  #mapCanvas {
+    width: 100%;
+    height: 300px;
+    float: center;
+  } 
+ </style>
+

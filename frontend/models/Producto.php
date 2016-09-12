@@ -36,6 +36,10 @@ class Producto extends \yii\db\ActiveRecord
 		return $this->hasOne(CategoriaProducto::className(), ['id_categoria_producto' => 'id_categoria_producto']);
 	}
 	
+	public function getSubcategoria() {
+		return $this->hasOne(SubcategoriaProducto::className(), ['id_subcategoria_producto' => 'id_subcategoria_producto']);
+	}
+	
 	public function getMarca() {
 		return $this->hasOne(MarcaProducto::className(), ['id_marca_producto' => 'id_marca_producto']);
 	}	

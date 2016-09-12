@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel backend\models\PackProductoSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Pack Productos';
+$this->title = 'Administrar Pack Productos';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="pack-producto-index">
@@ -22,8 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
+           
             'id_pack_producto',
             'id_pack',
             'id_producto',

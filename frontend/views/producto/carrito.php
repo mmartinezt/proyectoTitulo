@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use backend\models\Producto;
+use backend\models\Cliente;
 use yii\Helpers\ArrayHelper;
 use himiklab\colorbox\Colorbox;
 use yii\helpers\Url;
@@ -12,7 +13,7 @@ use yii\helpers\Url;
 $this->title = 'Carrito de Compras';
 $this->params['breadcrumbs'][] = ['label' => 'Productos', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
-echo('<a href='.Yii::$app->request->baseUrl.'/index.php?r=producto%2Fvitrina&id=0><img src='.Yii::$app->request->baseUrl.'/upload/productos/carrito-10.png style="position: fixed; top: 51px; right: 0px;" width=70></img></a>');
+echo('<a href='.Yii::$app->request->baseUrl.'/index.php?r=producto%2Fvitrina&id=0><img src='.Yii::$app->request->baseUrl.'/upload/productos/carrito-10.png style="position: fixed; top: 85px; right: 0px;" width=70></img></a>');
 ?>
 <div class = "row">
 <div class="col-lg-1">
@@ -44,7 +45,9 @@ echo('<a href='.Yii::$app->request->baseUrl.'/index.php?r=producto%2Fvitrina&id=
 										'title'=>'Cotizacion formal exportada a PDF'
 									]);
 		?>
-	</div>					
+	</div>		
+
+	
 <table width="100%" border="1">
 	<tr>
 		<td width="20%"> Producto</td>

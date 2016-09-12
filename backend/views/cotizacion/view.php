@@ -8,7 +8,7 @@ use backend\models\Servicio;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Cotizacion */
 
-$this->title = $model->id_cotizacion;
+$this->title = 'Cotizacion número: '.$model->id_cotizacion;
 $this->params['breadcrumbs'][] = ['label' => 'Cotizaciones', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

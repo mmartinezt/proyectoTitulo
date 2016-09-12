@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel backend\models\PackSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Packs';
+$this->title = 'Administrar Packs';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="pack-index">
@@ -22,31 +22,38 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'id_pack',
+       
+			[
+			 'attribute'=>'id_pack',
+			 'options'=>['width'=>'3%'],
+            ],
             'nombre',
-            'descripcion',
-            //'path_imagen',
 			[
 				'attribute' => 'precio',
+				'options'=>['width'=>'10%'],
 				'format' => 'html',
 				'value' => function($data){
 								  return '$ '.Html::decode(Html::encode(number_format($data->precio, 0, ',','.')));
 									},			
 			],
+            'descripcion',
+            //'path_imagen',
 			
             [    
 				'attribute' => 'estado',
+				'options'=>['width'=>'11%'],
                 'label' => 'Estado',
 				'format' => 'raw',
+				'filter'=> ['1'=>'Activo','0'=>'Inactivo'],
                 'value' => function($data){
-								  return Html::a(Html::encode(($data->estado === 1)? 'Activo':'Inactivo'),
+								  return Html::a(Html::encode(($data->estado == 1)? 'Activo':'Inactivo'),
 										 ['pack/cambiarestado', 'id' => $data->id_pack, 'estado'=>$data->estado],
-										 ['class'=>($data->estado === 1)? 'btn btn-success':'btn btn-danger', 'text-align:center;']);
+										 ['class'=>($data->estado == 1)? 'btn btn-success':'btn btn-danger', 'text-align:center;']);
 									},
             ],
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+			 'contentOptions' => ['style' => 'width:50px; font-size:23px;'],
+			],
         ],
     ]); ?>
 </div>

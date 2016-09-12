@@ -4,6 +4,8 @@ namespace backend\controllers;
 
 use Yii;
 use backend\models\Empresa;
+use backend\models\Cliente;
+use backend\models\User;
 use backend\models\EmpresaSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -106,7 +108,35 @@ class EmpresaController extends Controller
             ]);
         }
     }
-
+	
+	public function actionUpdateempresa($id, $id_user)
+    {
+		$empresa = Empresa::find()->where(['rut_empresa' => $id])->one();
+		
+        if ($empresa->load(Yii::$app->request->post()) && $empresa->save()) {
+			$model = User::find()->where(['id' => $id_user])->one();
+            return $this->redirect(['user/profile', 'id' => $model->id]);
+        } else {
+			$this->layout = 'mainModal';
+            return $this->render('updateempresa', [
+                'model' => $empresa,
+            ]);
+        }
+    }
+	
+	public function actionUpdatemodal($id)
+    {
+        $model = $this->findModel($id);
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['cliente/index']);
+        } else {
+			$this->layout = 'mainModal';
+            return $this->render('update2', [
+                'model' => $model,
+            ]);
+        }
+    }
+	
     /**
      * Deletes an existing Empresa model.
      * If deletion is successful, the browser will be redirected to the 'index' page.

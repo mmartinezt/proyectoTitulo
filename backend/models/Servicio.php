@@ -43,7 +43,7 @@ class Servicio extends \yii\db\ActiveRecord
             'id_servicio' => 'Identificador',
             'nombre' => 'Nombre',
             'descripcion' => 'Descripción',
-            'valor' => 'Valor',
+            'valor' => 'Valor($)',
         ];
     }
 }

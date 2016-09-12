@@ -2,7 +2,10 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
-
+use yii\Helpers\ArrayHelper;
+use backend\models\CategoriaProducto;
+use backend\models\SubcategoriaProducto;
+use backend\models\MarcaProducto;
 /* @var $this yii\web\View */
 /* @var $searchModel frontend\models\ProductoSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -16,7 +19,13 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="producto-index">
 <h1><?= Html::encode($this->title) ?></h1>
 
+
+
 <?php    
+$categorias=ArrayHelper::map(CategoriaProducto::find(array('order'=>'nombre'))->all(),'nombre','nombre');
+$subcategorias=ArrayHelper::map(SubcategoriaProducto::find(array('order'=>'nombre'))->all(),'nombre','nombre');
+$marcas=ArrayHelper::map(MarcaProducto::find(array('order'=>'nombre'))->all(),'nombre','nombre');
+
 echo('<a href='.Yii::$app->request->baseUrl.'/index.php?r=producto%2Fagregar&id=0><img src='.Yii::$app->request->baseUrl.'/upload/productos/carrito-10.png style="position: fixed; top: 85px; right: 0px;" width=70></img></a>');	
 ?>	
 
@@ -36,13 +45,15 @@ echo('<a href='.Yii::$app->request->baseUrl.'/index.php?r=producto%2Fagregar&id=
 				[
 					 'attribute' => 'categoria',
 					 'label'=>'Categoría',
-					 'value' => 'categoria.nombre'
+					 'value' => 'categoria.nombre',
+					 'filter'=> $categorias
 				],
 				
 				[
-					 'attribute' => 'id_subcategoria_producto',
+					 'attribute' => 'subcategoria',
 					 'label'=>'Sub-categoría',
-					 'value' => 'id_subcategoria_producto'
+					 'value' => 'subcategoria.nombre',
+					 'filter'=> $subcategorias
 				 ],
 				 
 				'nombre_producto',
@@ -50,7 +61,8 @@ echo('<a href='.Yii::$app->request->baseUrl.'/index.php?r=producto%2Fagregar&id=
 				[
 					 'attribute' => 'marca',
 					 'label'=>'Marca',
-					 'value' => 'marca.nombre'
+					 'value' => 'marca.nombre',
+					 'filter'=> $marcas
 				 ],
 			  
 			  

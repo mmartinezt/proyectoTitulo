@@ -1,32 +1,29 @@
 <!DOCTYPE html>
-<!--
- * A Design by GraphBerry
- * Author: GraphBerry
- * Author URL: http://graphberry.com
- * License: http://graphberry.com/pages/license
--->
 
 <html lang="en">
     <meta charset=utf-8>
         <title>Seguridad controlada con tu SmartPhone</title>
-        <!-- Load Roboto font -->
-        
+		
+		<script src="archivosIndex/js/jquery.js"></script>
+        <script type="text/javascript" src="archivosIndex/js/jquery.mixitup.js"></script>
+
+        <script type="text/javascript" src="archivosIndex/js/modernizr.custom.js"></script>
+        <script type="text/javascript" src="archivosIndex/js/jquery.bxslider.js"></script>
+        <script type="text/javascript" src="archivosIndex/js/jquery.cslider.js"></script>
+        <script type="text/javascript" src="archivosIndex/js/jquery.placeholder.js"></script>
+        <script type="text/javascript" src="archivosIndex/js/jquery.inview.js"></script>
+              
+		<link rel="stylesheet" type="text/css" href="archivosIndex/css/jquery.cslider.css" />
+        <link rel="stylesheet" type="text/css" href="archivosIndex/css/jquery.bxslider.css" />
+        <link rel="stylesheet" type="text/css" href="archivosIndex/css/animate.css" />
 		<!-- Load css styles -->
         <link rel="stylesheet" type="text/css" href="archivosIndex/css/bootstrap.css" />
         <link rel="stylesheet" type="text/css" href="archivosIndex/css/bootstrap-responsive.css" />
         <link rel="stylesheet" type="text/css" href="archivosIndex/css/style.css" />
         <link rel="stylesheet" type="text/css" href="archivosIndex/css/pluton.css" />
-		</script>
-    <script async defer
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUQz_nxkXfvOZ2yI1KFj9k8R0sJoJaatA&callback=initializeMap">
-    </script>
+		<script async="" defer="" type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCTBAPgAViiNcLiKvHOD5jDWusVBePea90&callback=initializeMap"></script>
 		
-        <!--[if IE 7]>
-            <link rel="stylesheet" type="text/css" href="css/pluton-ie7.css" />
-        <![endif]-->
-
-        <!-- Fav and touch icons -->
-        
+        <script type="text/javascript" src="archivosIndex/js/app.js"></script>     
 		
 <style>
   .active {
@@ -34,11 +31,8 @@
        cursor: default;
     } 
 </style>
-<script>
-$("html, body").animate({
-    scrollTop: 1
-}, 2);
-</script>
+
+<!-- contador de visitas, guarda IP de cliente -->
 <?php
 $archivo = "log.txt";
 $manejador = fopen($archivo,"a") or die("Imposible abrir el archivo\n");
@@ -46,6 +40,8 @@ $ip = $_SERVER['REMOTE_ADDR']."\r\n";
 fwrite($manejador,$ip);
 fclose($manejador);
 ?>		
+<!-- fin contador de visitas-->
+
     <body>  
         <!-- Start home section -->
         <div id="home">
@@ -60,7 +56,9 @@ fclose($manejador);
                     <div class="da-slide">
                         <h2 class="fittext2">bienvenido a Smart Full-Security</h2>
                         <h4>Seguridad Controlada a través de tu SmartPhone</h4>
-                        <p>Hoy en día, existe gran cantidad de tecnología para que tu casa o negocio este segura y protegida. SMART FULL-SECURITY te presenta gran cantidad de alternativas para proteger tus propiedades a través de tu SmartPhone y uso de Internet.
+                        <p>Hoy en día, existe gran cantidad de tecnología para que tu casa o negocio este segura y protegida. 
+							SMART FULL-SECURITY te presenta gran cantidad de alternativas para proteger tus propiedades a través 
+							de tu SmartPhone y uso de Internet.
 						  Sigue leyendo...</p>
 						<a href="#service" class="da-link button">Read more</a>
                         <div class="da-img">
@@ -72,7 +70,9 @@ fclose($manejador);
                     <div class="da-slide">
                         <h2 class="fittext2">ALARMA con GSM + PSTN GSM707</h2>
                         <h4>Última tecnología en Alarmas, con doble seguridad.</h4>
-                        <p>Única con doble sistema de comunicación, por linea telefónica y por Celular, sistema seguro y confiable. Permite monitorear su casa en modo remoto a través de su celular. Incluye Sensores magnéticos, de movimiento infrarrojos, controles remoto con botón de pánico.</p>
+                        <p>Única con doble sistema de comunicación, por linea telefónica y por Celular, sistema seguro y confiable. 
+							Permite monitorear su casa en modo remoto a través de su celular. Incluye Sensores magnéticos, 
+							de movimiento infrarrojos, controles remoto con botón de pánico.</p>
 						<a href="#service" class="da-link button">Read more</a>
                         <div class="da-img">
                             <img src="archivosIndex/images/Slider02.png" alt="image01" width="320">
@@ -83,8 +83,10 @@ fclose($manejador);
                     <div class="da-slide">
                         <h2 class="fittext2">bienvenido a Smart Full-Security</h2>
                         <h4>Seguridad Controlada a través de tu SmartPhone</h4>
-                        <p>Hoy en día, existe gran cantidad de tecnología para que tu casa o negocio este segura y protegida. SMART FULL-SECURITY te presenta gran cantidad de alternativas para proteger tus propiedades a través de tu SmartPhone y uso de Internet.
-						  Sigue leyendo...</p>
+                        <p>Hoy en día, existe gran cantidad de tecnología para que tu casa o negocio este segura y protegida. 
+							SMART FULL-SECURITY te presenta gran cantidad de alternativas para proteger tus propiedades a través 
+							de tu SmartPhone y uso de Internet.
+							Sigue leyendo...</p>
 						<a href="#service" class="da-link button">Read more</a>
                         <div class="da-img">
                             <img src="archivosIndex/images/Slider01.png" alt="image01" width="320">
@@ -101,6 +103,7 @@ fclose($manejador);
             </div>
         </div>
         <!-- End home section -->
+		
         <!-- Service section start -->
         <div class="section primary-section" id="service">
             <div class="container">
@@ -119,7 +122,8 @@ fclose($manejador);
 								<img class="img-circle" src="archivosIndex/images/Service1.png" alt="service 1"> 
                             </div>
                             <h3>Cámaras de Seguridad</h3>
-                            <p>Vea y controle en tiempo real su hogar o empresa en imagen HD desde su SmartPhone o cualquier dispositivo con acceso a internet.</p>
+                            <p>Vea y controle en tiempo real su hogar o empresa en imagen HD desde su SmartPhone o cualquier dispositivo con 
+								acceso a internet.</p>
 								</a>
 						</div>
                     </div>
@@ -173,7 +177,6 @@ fclose($manejador);
         </div>
         <!-- Service section end -->
 
-
         <!-- Price section start -->
         <div id="price" class="section secondary-section">
             <div class="container">
@@ -215,7 +218,8 @@ fclose($manejador);
                     </div>
                 </div>
                 <div class="centered">
-                    <p class="price-text">Si necesita mas especificaciones sobre estas promociones, comuníquese con nosotros. <font color = "#015C1C">Estamos conectados</font>.</p>
+                    <p class="price-text">Si necesita mas especificaciones sobre estas promociones, comuníquese con nosotros. 
+						<font color = "#015C1C">Estamos conectados</font>.</p>
                     <a href="#contact" class="button">Escríbenos!</a>
                 </div>
             </div>
@@ -235,7 +239,8 @@ fclose($manejador);
                     <strong>Muy bien!</strong>Te mantendremos informado.</div>
                 <div class="row-fluid">
                     <div class="span5">
-                        <p>Déjanos tu Email y te mantendremos informado sobre nuevas promociones, tecnologías, videos demostrativos y nuevas capacidades de tu SmartPhone para controlar tu seguridad.</p>
+                        <p>Déjanos tu Email y te mantendremos informado sobre nuevas promociones, tecnologías, videos demostrativos y 
+							nuevas capacidades de tu SmartPhone para controlar tu seguridad.</p>
                     </div>
                     <div class="span7">
                         <form class="inline-form">
@@ -257,6 +262,7 @@ fclose($manejador);
                         <p>realiza tus consultas, solicita una cotización... escríbenos, respondéremos a la brevedad.</p>
                     </div>
                 </div>
+				
                 <div class="map-wrapper">
                     <div class="map-canvas" id="map-canvas">Cargando Coordenadas...</div>
                     <div class="container">
@@ -295,6 +301,7 @@ fclose($manejador);
                         </div>
                     </div>
                 </div>
+				
                 <div class="container">
                     <div class="span9 center contact-info">
                         <p></p>
@@ -315,7 +322,7 @@ fclose($manejador);
                         </ul>
                     </div>
 
-
+			  
 
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
@@ -335,25 +342,12 @@ fclose($manejador);
 
                     <div class="row-fluid centered">
                           <a href="" target="_Blank" title="contador de visitas">Eres el visitante número</a><br>
-                           <script type="text/javascript" src="http://counter5.fcs.ovh/private/countertab.js?c=51ae74597fb8ec4eb967599315d26b0a"></script>
+                           <script type="text/javascript" src="ArchivosIndex/js/contadorVisitas.js"></script>
                           <br><a href="" target="_Blank" title="contador de visitas">Gracias por visitar nuestra Web</a><br>
                     </div>
-
-
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-75840331-1', 'auto');
-  ga('send', 'pageview');
-
-</script>
-
-                </div>
-            </div>
-        </div>
+			</div>
+		</div>
+	</div>      
         <!-- Contact section edn -->
         <!-- Footer section start -->
         <div class="footer">
@@ -367,15 +361,17 @@ fclose($manejador);
             </a>
         </div>
         <!-- ScrollUp button end -->
-        <!-- Include javascript -->
-
-
-
-	</div>
-	
-
+       
     </body>
 </html>
 
+<!-- Activa animacion inicial en menu -->
+<script>
+jQuery(document).ready(function ($) {
 
+$("html, body").animate({
+    scrollTop: 1
+}, 2);
 
+});
+</script>

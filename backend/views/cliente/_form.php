@@ -32,7 +32,7 @@ use yii\helpers\Url;
 	<a class="colorbox" href="<?php echo(Url::toRoute('empresa/create2')); ?>"> <input class="btn btn-primary" type="button" value="Agregar nueva Empresa"></input></a>	
 	
 	<br>
-
+	
     <?= $form->field($model, 'nombres')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'apellidos')->textInput(['maxlength' => true]) ?>
@@ -72,6 +72,7 @@ use yii\helpers\Url;
 <script> 
 
 function val(){
+
 	Rut(document.getElementById("cliente-rut_cliente").value);
 }
 

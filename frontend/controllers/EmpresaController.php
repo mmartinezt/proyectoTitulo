@@ -92,6 +92,21 @@ class EmpresaController extends Controller
             ]);
         }
     }
+	
+	public function actionUpdateempresa($id, $id_user)
+    {
+		$empresa = Empresa::find()->where(['rut_empresa' => $id])->one();
+		
+        if ($empresa->load(Yii::$app->request->post()) && $empresa->save()) {
+			$model = User::find()->where(['id' => $id_user])->one();
+            return $this->redirect(['user/profile', 'id' => $model->id]);
+        } else {
+			$this->layout = 'mainModal2';
+            return $this->render('updateempresa', [
+                'model' => $empresa,
+            ]);
+        }
+    }
 
     /**
      * Deletes an existing Empresa model.

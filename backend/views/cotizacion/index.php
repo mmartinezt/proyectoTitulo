@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel backend\models\CotizacionSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Cotizaciones';
+$this->title = 'Administrar Cotizaciones';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="cotizacion-index">
@@ -22,14 +22,24 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'id_cotizacion',
-            'fecha',
-            'id_cliente',
+            
+			[
+			 'attribute'=>'id_cotizacion',
+			 'options'=>['width'=>'3%'],
+			],
+            
+            [
+			 'attribute' => 'id_cliente',
+			 'options'=>['width'=>'15%'],
+			],
+            
             'comentario',
-
-            ['class' => 'yii\grid\ActionColumn'],
+			[
+			 'attribute'=>'fecha',
+			 'options'=>['width'=>'15%'],
+			],
+            ['class' => 'yii\grid\ActionColumn',
+			'contentOptions' => ['style' => 'width:50px; font-size:23px;'],],
         ],
     ]); ?>
 </div>

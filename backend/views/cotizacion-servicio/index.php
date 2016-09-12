@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel backend\models\CotizacionServicioSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Cotizacion Servicios';
+$this->title = 'Administrar Cotizacion Servicios';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="cotizacion-servicio-index">
@@ -22,7 +22,6 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
 
             'id_cotizacion_servicio',
             'id_cotizacion',

@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel backend\models\EmpresaSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Empresas';
+$this->title = 'Administrar Empresas';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="empresa-index">
@@ -22,14 +22,14 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
+            
             'rut_empresa',
             'nombre_empresa',
             'nombre_fantasia',
             'giro_empresa',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+			'contentOptions' => ['style' => 'width:50px; font-size:23px;'],],
         ],
     ]); ?>
 </div>

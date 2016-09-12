@@ -2,15 +2,17 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use backend\models\CategoriaProducto;
+use yii\Helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\SubcategoriaProductoSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Sub-categoría de Productos';
+$this->title = 'Administrar Sub-categorías de Productos';
 $this->params['breadcrumbs'][] = $this->title;
 
-
+$categorias=ArrayHelper::map(CategoriaProducto::find(array('order'=>'nombre'))->all(),'nombre','nombre');
 
 ?>
 <div class="subcategoria-producto-index">
@@ -25,19 +27,30 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'id_subcategoria_producto',
+			[
+			 'attribute'=>'id_subcategoria_producto',
+			 'options'=>['width'=>'3%'],
+            ],
 			[
 				 'attribute' => 'categoria',
 				 'label'=>'Categoría',
-				 'value' => 'categoria.nombre'
+				 'value' => 'categoria.nombre',
+				 'filter'=> $categorias,
+				 'options'=>['width'=>'20%'],
 			],
-            			
-			'nombre',
-            'descripcion',
+            [
+			 'attribute'=>'nombre',
+			 'options'=>['width'=>'25%'],
+            ],
+			[
+			 'attribute'=>'descripcion',
+			 'options'=>['width'=>'40%'],
+            ],
+            
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+			 'contentOptions' => ['style' => 'width:50px; font-size:23px;'],
+			],
         ],
     ]); ?>
 </div>

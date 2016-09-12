@@ -5,10 +5,10 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model backend\models\ClienteServicioEjecucion */
 
-$this->title = 'Update Cliente Servicio Ejecucion: ' . $model->id_cliente_ejecucion;
+$this->title = 'Administrar solicitudes de servicios: ' . $model->id_cliente_ejecucion;
 $this->params['breadcrumbs'][] = ['label' => 'Cliente Servicio Ejecucions', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id_cliente_ejecucion, 'url' => ['view', 'id' => $model->id_cliente_ejecucion]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->params['breadcrumbs'][] = 'Modificar solicitud de servicio';
 ?>
 <div class="cliente-servicio-ejecucion-update">
 

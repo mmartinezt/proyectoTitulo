@@ -38,16 +38,13 @@ $clientes=ArrayHelper::map(Cliente::find()->all(),'id_cliente','nombres');
 
 
 	<?= $form->field($model, 'fecha')->widget(DateTimePicker::classname(), [
-    
 		'name' => 'fecha',
-
 		'readonly' => true,
 		'pluginOptions' => [
         'format' => 'yyyy/mm/dd hh:ii:ss',
         'startDate' => '01-Mar-2014 12:00 AM',
         'todayHighlight' => true
-    ]
-	
+		]
 	]);
 	?>
 	

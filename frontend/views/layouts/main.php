@@ -16,41 +16,25 @@ AppAsset::register($this);
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
 <head>
-
-        <script src="archivosIndex/js/jquery.js"></script>
-        <script type="text/javascript" src="archivosIndex/js/jquery.mixitup.js"></script>
-        <script type="text/javascript" src="archivosIndex/js/bootstrap.js"></script>
-        <script type="text/javascript" src="archivosIndex/js/modernizr.custom.js"></script>
-        <script type="text/javascript" src="archivosIndex/js/jquery.bxslider.js"></script>
-        <script type="text/javascript" src="archivosIndex/js/jquery.cslider.js"></script>
-        <script type="text/javascript" src="archivosIndex/js/jquery.placeholder.js"></script>
-        <script type="text/javascript" src="archivosIndex/js/jquery.inview.js"></script>
-        <!-- Load google maps api and call initializeMap function defined in app.js -->
-        <script async="" defer="" type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false&callback=initializeMap"></script>
-        <!-- css3-mediaqueries.js for IE8 or older -->
-        <!--[if lt IE 9]>
-            <script src="js/respond.min.js"></script>
-        <![endif]-->
-        <script type="text/javascript" src="archivosIndex/js/app.js"></script>
-		
-<link rel="apple-touch-icon-precomposed" sizes="144x144" href="archivosIndex/images/ico/apple-touch-icon-144.png">
-        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="archivosIndex/images/ico/apple-touch-icon-114.png">
-        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="archivosIndex/images/apple-touch-icon-72.png">
-        <link rel="apple-touch-icon-precomposed" href="archivosIndex/images/ico/apple-touch-icon-57.png">
-        <link rel="shortcut icon" href="archivosIndex/images/ico/favicon.ico">
-
-        <link rel="stylesheet" type="text/css" href="archivosIndex/css/jquery.cslider.css" />
-        <link rel="stylesheet" type="text/css" href="archivosIndex/css/jquery.bxslider.css" />
-        <link rel="stylesheet" type="text/css" href="archivosIndex/css/animate.css" />
-    <meta charset="<?= Yii::$app->charset ?>">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="archivosIndex/images/ico/apple-touch-icon-144.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="archivosIndex/images/apple-touch-icon-72.png">
+	<link rel="apple-touch-icon-precomposed" sizes="57x57"href="archivosIndex/images/ico/apple-touch-icon-57.png">
+	<link rel="shortcut icon" href="archivosIndex/images/ico/favicon.ico">    
+	<meta charset="<?= Yii::$app->charset ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
-	
 </head>
 
 <style>
+.navbar-inverse .nav li.dropdown.open > .dropdown-toggle,
+.navbar-inverse .nav li.dropdown.active > .dropdown-toggle,
+.navbar-inverse .nav li.dropdown.open.active > .dropdown-toggle {
+  color: #ffffff;
+  background-color: #111111;
+}
+
 .navbar {
     background: #181A1C;
     margin-bottom:0;
@@ -116,6 +100,22 @@ AppAsset::register($this);
     color: #000;
 }
 
+.navbar .nav > li > .dropdown-menu:after {
+  position: absolute;
+  top: -6px;
+  right: 10px;
+  display: inline-block;
+  border-right: 6px solid transparent;
+  border-bottom: 6px solid #ffffff;
+  border-left: 6px solid transparent;
+  content: '';
+}
+
+body {
+  background-color: #ECF0F5;
+}
+
+
 
 </style>
 
@@ -139,7 +139,7 @@ AppAsset::register($this);
         ['label' => 'INICIO', 'url' => ['/site/index']],
         //['label' => 'About', 'url' => ['/site/about']],
         //['label' => 'Contact', 'url' => ['/site/contact']],
-		['label' => 'VITRINA DE PRODUCTOS', 'url' => ['/producto/vitrina', 'id'=>0]],
+		['label' => 'VITRINA DE PRODUCTOS', 'url' => ['/producto/vitrina', 'id'=>0]],		
 		['label' => 'SERVICIOS', 'url' => Yii::$app->request->baseUrl.'#service'],
 		['label' => 'Promociones', 'url' => Yii::$app->request->baseUrl.'#price'],
 		['label' => 'Contacto', 'url' => Yii::$app->request->baseUrl.'#contact'],
@@ -152,9 +152,10 @@ AppAsset::register($this);
                                 'url' => '#',
                                 'items' => [
 										(
-											'<li><center><div class="avatar" style="background-image: url('.Yii::$app->request->baseUrl.'/images/usuario-registrado.jpg)"></div>'
-											. Html::beginForm(['#'], 'post', ['class' => 'navbar-form'])
-											. Html::Button(
+											'<center><div class="avatar" style="background-image: url('.Yii::$app->request->baseUrl.'/images/usuario-registrado.jpg)"></div>'
+											.'<li>'
+											. Html::beginForm(['/user/profile', 'id'=>Yii::$app->user->identity->id], 'post', ['class' => 'navbar-form'])
+											. Html::submitButton(
 												'Administrar cuenta',
 												['class' => 'btn btn-success']
 											)
@@ -169,7 +170,7 @@ AppAsset::register($this);
 												['class' => 'btn btn-danger']
 											)
 											. Html::endForm()
-											. '</li></center>'
+											. '</center>'
 										)
 								
 											],

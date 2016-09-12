@@ -21,12 +21,13 @@ class ProductoSearch extends Producto
 
 	public $categoria;
 	public $marca;
+	public $subcategoria;
 	
     public function rules()
     {
         return [
             [['id_prodcto', 'id_categoria_producto', 'id_subcategoria_producto', 'stock', 'precio_compra', 'precio_venta'], 'integer'],
-            [['nombre_producto', 'id_marca_producto', 'descripcion', 'path_imagen','categoria','marca'], 'safe'],
+            [['nombre_producto', 'id_marca_producto', 'descripcion', 'path_imagen','subcategoria' ,'categoria','marca'], 'safe'],
         ];
     }
 
@@ -50,7 +51,7 @@ class ProductoSearch extends Producto
     {
         $query = Producto::find();
 		
-		$query->joinWith(['categoria','marca']);
+		$query->joinWith(['subcategoria','categoria','marca']);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -70,6 +71,11 @@ class ProductoSearch extends Producto
 		$dataProvider->sort->attributes['categoria'] = [
 			'asc' => ['categoria_producto.nombre' => SORT_ASC],
 			'desc' => ['categoria_producto.nombre' => SORT_DESC],
+		];
+		
+		$dataProvider->sort->attributes['subcategoria'] = [
+			'asc' => ['subcategoria_producto.nombre' => SORT_ASC],
+			'desc' => ['subcategoria_producto.nombre' => SORT_DESC],
 		];
 		
 		$dataProvider->sort->attributes['marca'] = [
@@ -92,9 +98,10 @@ class ProductoSearch extends Producto
             ->andFilterWhere(['like', 'descripcion', $this->descripcion])
             ->andFilterWhere(['like', 'path_imagen', $this->path_imagen])
 			 ->andFilterWhere(['like', 'id_subcategoria_producto', $this->id_subcategoria_producto])
-
+			
+			->andFilterWhere(['like', 'subcategoria_producto.nombre', $this->subcategoria])
 			  ->andFilterWhere(['like', 'categoria_producto.nombre', $this->categoria])
-			   ->andFilterWhere(['like', 'marca.nombre', $this->marca]);
+			   ->andFilterWhere(['like', 'marca_producto.nombre', $this->marca]);
 
         return $dataProvider;
     }

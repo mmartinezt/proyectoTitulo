@@ -11,6 +11,7 @@ use Yii;
  * @property integer $id_cliente_peticion
  * @property integer $id_empleado
  * @property string $fecha
+ * @property integer $estado
  * @property string $observacion
  */
 class ClienteServicioEjecucion extends \yii\db\ActiveRecord
@@ -30,11 +31,15 @@ class ClienteServicioEjecucion extends \yii\db\ActiveRecord
     {
         return [
             [['id_cliente_peticion', 'id_empleado', 'fecha', 'observacion'], 'required'],
-            [['id_cliente_peticion', 'id_empleado'], 'integer'],
-            [['fecha'], 'safe'],
+            [['id_cliente_peticion', 'id_empleado', 'estado'], 'integer'],
+            [['fecha','estado'], 'safe'],
             [['observacion'], 'string', 'max' => 500],
         ];
     }
+	
+	public function getPeticion() {
+		return $this->hasOne(ClienteServicioPeticion::className(), ['id_cliente_servicio_peticion' => 'id_cliente_peticion']);
+	}
 
     /**
      * @inheritdoc
@@ -42,11 +47,12 @@ class ClienteServicioEjecucion extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id_cliente_ejecucion' => 'Id Cliente Ejecucion',
+            'id_cliente_ejecucion' => 'Identificador',
             'id_cliente_peticion' => 'Id Cliente Peticion',
-            'id_empleado' => 'Id Empleado',
-            'fecha' => 'Fecha',
-            'observacion' => 'Observacion',
+            'id_empleado' => 'Empleado asignado',
+            'fecha' => 'Fecha ejecución',
+            'estado' => 'Estado',
+            'observacion' => 'Observación',
         ];
     }
 }
